@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/groomwear/Kurta.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/groomwear/Sherwani.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/groomwear/weddingsuits%20.dart';
@@ -56,8 +57,11 @@ class _EntregroompageState extends State<Entregroompage> {
             color: Colors.black,
           ),
           actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+            IconButton(onPressed: () {
+                 Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+            }, icon: const Icon(Icons.chat_outlined))
           ]),
       backgroundColor: Color.fromARGB(255, 155, 182, 224),
       body: Column(

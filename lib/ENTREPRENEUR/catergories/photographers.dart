@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/photographers/photographerss.dart';
 import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
 
@@ -54,8 +55,11 @@ class _EntrephotogrpageState extends State<Entrephotogrpage> {
           color: Colors.black,
         ),
          actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.chat_outlined))
         ],
         
       ),

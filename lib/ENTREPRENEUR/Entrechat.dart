@@ -34,8 +34,6 @@ class _EntreChatpageState extends State<EntreChatpage> {
           ),
           color: Colors.black,
         ),
-      
-        
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -59,7 +57,7 @@ class _EntreChatpageState extends State<EntreChatpage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Hello"),
-                         Text("2 40 am"),
+                        Text("2 40 am"),
                       ],
                     ),
                   ),
@@ -69,7 +67,6 @@ class _EntreChatpageState extends State<EntreChatpage> {
             SizedBox(
               height: 30,
             ),
-            
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -79,16 +76,16 @@ class _EntreChatpageState extends State<EntreChatpage> {
                       borderRadius: BorderRadius.circular(10)),
                   height: 35,
                   width: 200,
-                   child: Padding(
-                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                     child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Hello"),
-                           Text("2 40 am"),
-                        ],
-                      ),
-                   ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Hello"),
+                        Text("2 40 am"),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

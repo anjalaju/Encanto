@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/USER/Drawer/shotlist.dart';
+import 'package:main_project/USER/chat.dart';
 
 class Shortlistphotographer extends StatefulWidget {
   const Shortlistphotographer({super.key});
@@ -35,8 +37,16 @@ class _ShortlistphotographerState extends State<Shortlistphotographer> {
           color: Colors.black,
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+            Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => Shortlist()),
+      );
+          }, icon: const Icon(Icons.favorite)),
+          IconButton(onPressed: () {
+            Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => Chatpage()),
+      );
+          }, icon: const Icon(Icons.chat_outlined))
         ],
         
       ),
@@ -113,7 +123,11 @@ class _ShortlistphotographerState extends State<Shortlistphotographer> {
                                       RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(15)))),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => Chatpage()),
+      );
+                              },
                               child: const Row(
                                 children: [
                                   Icon(Icons.message),

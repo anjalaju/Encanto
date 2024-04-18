@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/musicdance/IndianDance.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/musicdance/Indianmusic.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/musicdance/WesternDance.dart';
@@ -57,8 +58,11 @@ class _EntremusicpageState extends State<Entremusicpage> {
           color: Colors.black,
         ),
          actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.chat_outlined))
         ]
       ),
       backgroundColor:Color(0xff95DDD9),

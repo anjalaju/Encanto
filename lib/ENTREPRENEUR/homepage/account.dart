@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 
 class Accountpage extends StatefulWidget {
   const Accountpage({super.key});
@@ -25,8 +26,11 @@ class _AccountpageState extends State<Accountpage> {
           color: Colors.black,
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.chat_outlined))
         ],
       ),
       body: Padding(

@@ -39,10 +39,7 @@ class _EntreSettingpageState extends State<EntreSettingpage> {
           color: Colors.black,
         ),
         actions: [
-          // IconButton(onPressed: () {
-          //     // Navigator.push(context,
-          //     //       MaterialPageRoute(builder: (context) => const Shortlist()));
-          // }, icon: const Icon(Icons.favorite)),
+
           IconButton(onPressed: () {
              Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => EntreChatpage(),

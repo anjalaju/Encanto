@@ -82,125 +82,123 @@ class _CharityhomepageState extends State<Charityhomepage> {
           }, icon: const Icon(Icons.chat_outlined))
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 400,
-              width: MediaQuery.of(context).size.width,
-              color: const Color.fromARGB(255, 248, 0, 83),
-              child: const Image(
-                image: AssetImage(
-                  "images/Charity.jpeg",
+      body: Column(
+        children: [
+          Container(
+            height: 300,
+            width: MediaQuery.of(context).size.width,
+            // color: const Color.fromARGB(255, 248, 0, 83),
+            child: const Image(
+              image: AssetImage(
+                "images/Charity.jpeg",
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            height: 500,
+            width: double.infinity,
+            color: const Color(0xff80754E),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
-                fit: BoxFit.cover,
-              ),
-            ),
-            Container(
-              height: 460,
-              width: double.infinity,
-              color: const Color(0xff80754E),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: const Color(0xffD9D9D9),
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 111,
-                    width: 361,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Donate(),
-                        ));
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 20.0),
-                            child: Text(
-                              "DONATE",
-                              style: TextStyle(
-                                  fontSize: 35, fontWeight: FontWeight.bold),
-                            ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color(0xffD9D9D9),
+                      borderRadius: BorderRadius.circular(20)),
+                  height: 111,
+                  width: 361,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Donate(),
+                      ));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20.0),
+                          child: Text(
+                            "DONATE",
+                            style: TextStyle(
+                                fontSize: 35, fontWeight: FontWeight.bold),
                           ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              height: 111,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.red),
-                              child: const Image(
-                                image: AssetImage(
-                                  "images/donatepica.jpeg",
-                                ),
-                                fit: BoxFit.fill,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            height: 111,
+                            width: 120,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.red),
+                            child: const Image(
+                              image: AssetImage(
+                                "images/donatepica.jpeg",
                               ),
+                              fit: BoxFit.fill,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: const Color(0xffD9D9D9),
-                        borderRadius: BorderRadius.circular(20)),
-                    height: 111,
-                    width: 361,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const Receive(),
-                        ));
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 20.0),
-                            child: Text(
-                              "RECEIVE",
-                              style: TextStyle(
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold,
-                              ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color(0xffD9D9D9),
+                      borderRadius: BorderRadius.circular(20)),
+                  height: 111,
+                  width: 361,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Receive(),
+                      ));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 20.0),
+                          child: Text(
+                            "RECEIVE",
+                            style: TextStyle(
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              height: 111,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.red),
-                              child: const Image(
-                                image: AssetImage(
-                                  "images/donatepicb.jpeg",
-                                ),
-                                fit: BoxFit.fill,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            height: 111,
+                            width: 120,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.red),
+                            child: const Image(
+                              image: AssetImage(
+                                "images/donatepicb.jpeg",
                               ),
+                              fit: BoxFit.fill,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

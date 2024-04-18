@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/cardmakers/Otherfunctioncards.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/cardmakers/Savethedatecards.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/cardmakers/Weddingcards.dart';
 import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
-
 
 class Entrecardpage extends StatefulWidget {
   const Entrecardpage({super.key});
@@ -16,7 +16,7 @@ class _EntrecardpageState extends State<Entrecardpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: EntremyNav(
+      bottomNavigationBar: EntremyNav(
         index: 0,
         onTap: (index) {
           if (index == 0) {
@@ -33,34 +33,38 @@ class _EntrecardpageState extends State<Entrecardpage> {
         },
       ),
       appBar: AppBar(
-        title: const Text(
-          'Card makers',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
-        ),
-        backgroundColor: Colors.transparent,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            thickness: 2,
+          title: const Text(
+            'Card makers',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+          ),
+          backgroundColor: Colors.transparent,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              thickness: 2,
+              color: Colors.black,
+              height: 1,
+            ),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+            ),
             color: Colors.black,
-            height: 1,
           ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
-         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
-        ]
-      ),
-      backgroundColor:Color(0xccF1ED99),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+                },
+                icon: const Icon(Icons.chat_outlined))
+          ]),
+      backgroundColor: Color(0xccF1ED99),
       body: Column(
         children: [
           SizedBox(
@@ -90,7 +94,11 @@ class _EntrecardpageState extends State<Entrecardpage> {
                           leading: Icon(Icons.library_books_outlined),
                           iconColor: Color.fromRGBO(0, 0, 0, 1),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder:(context) => Entrepweddingcards()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Entrepweddingcards()));
                           },
                         ),
                       )
@@ -120,7 +128,10 @@ class _EntrecardpageState extends State<Entrecardpage> {
                           leading: Icon(Icons.library_books_outlined),
                           iconColor: Color.fromRGBO(0, 0, 0, 1),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder:(context) => Entrepsavedate()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Entrepsavedate()));
                           },
                         ),
                       )
@@ -150,7 +161,10 @@ class _EntrecardpageState extends State<Entrecardpage> {
                           leading: Icon(Icons.library_books_outlined),
                           iconColor: Color.fromRGBO(0, 0, 0, 1),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder:(context) => Entrepotherfns()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Entrepotherfns()));
                           },
                         ),
                       )

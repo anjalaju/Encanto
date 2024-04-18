@@ -37,7 +37,6 @@ class _SavethedatecardsState extends State<Savethedatecards> {
           ),
           color: Colors.black,
         ),
-  
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,18 +83,17 @@ class _SavethedatecardsState extends State<Savethedatecards> {
                         const Text("Ap card makers"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
+                    Text("save the date and other cards"),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const Text("save the date and other cards"),
                         OutlinedButton(
                             style: ButtonStyle(
                                 foregroundColor: MaterialStateProperty.all(
@@ -113,9 +111,9 @@ class _SavethedatecardsState extends State<Savethedatecards> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,17 +128,21 @@ class _SavethedatecardsState extends State<Savethedatecards> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "1000-2000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        SizedBox(width: 6,),
-                          Text("per day")
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text("per day")
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -167,9 +169,9 @@ class _SavethedatecardsState extends State<Savethedatecards> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(),
+                          ));
                         },
                         child: const Row(
                           children: [

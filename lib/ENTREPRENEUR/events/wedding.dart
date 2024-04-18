@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catergories/bridalwearaccess.dart';
 import 'package:main_project/ENTREPRENEUR/catergories/cakes.dart';
 import 'package:main_project/ENTREPRENEUR/catergories/cardmakers.dart';
@@ -71,8 +72,11 @@ class _EntreweddingState extends State<Entrewedding> {
           color: Colors.black,
         ),
          actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.chat_outlined))
         ]
       ),
       body:  Column(

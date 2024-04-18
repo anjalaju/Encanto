@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catergories/rentaldress.dart';
 import 'package:main_project/ENTREPRENEUR/catergories/rentaljewellery.dart';
 import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
@@ -56,7 +57,11 @@ class _EntrerentalpageState extends State<Entrerentalpage> {
           color: Colors.black,
         ),
          actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.favorite)),
           IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
         ]
       ),

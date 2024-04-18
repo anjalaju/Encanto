@@ -86,47 +86,16 @@ class _EntrepkurtiesState extends State<Entrepkurties> {
           
      
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-        Row(
-                      children: [
-                        Icon(Icons.currency_rupee,size: 20,),
-                        Text(
-                          "15000",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
-                
-                      ],
-                    ),
-                        OutlinedButton(
-                            style: ButtonStyle(
-                                foregroundColor: MaterialStateProperty.all(
-                                    const Color(0xff496FF7)),
-                                textStyle: MaterialStateProperty.all(
-                                    const TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14)),
-                                minimumSize: MaterialStateProperty.all(
-                                    const Size(200, 50)),
-                                side: MaterialStateProperty.all(
-                                    const BorderSide(color: Color(0xff496FF7))),
-                                shape: MaterialStateProperty.all(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20)))),
-                            onPressed: () {},
-                            child: const Row(
-                              children: [
-                                Icon(Icons.message),
-                                SizedBox(
-                                  width: 20,
+                                  children: [
+                                    Icon(Icons.currency_rupee,size: 20,),
+                                    Text(
+                                      "15000",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold, fontSize: 18),
+                                    ),
+                            
+                                  ],
                                 ),
-                                Text("Book now"),
-                              ],
-                            ))
-                      ],
-                    ),
                   
              
                   ],

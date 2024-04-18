@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/costumes/Ethinicwear.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/costumes/Kurties&Saries.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/costumes/WesternSuits.dart';
@@ -57,8 +58,11 @@ class _EntrecostumepageState extends State<Entrecostumepage> {
           color: Colors.black,
         ),
          actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.chat_outlined))
         ]
       ),
       backgroundColor:Color(0xffD9C2A7),

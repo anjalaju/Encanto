@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/Cakes/Bakerycakes.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/Cakes/homemade.dart';
 import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
@@ -56,8 +57,11 @@ class _EntrecakespageState extends State<Entrecakespage> {
           color: Colors.black,
         ),
          actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.chat_outlined))
         ]
       ),
       backgroundColor:Color(0xccF4C9C9),

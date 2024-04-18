@@ -23,7 +23,7 @@ class _EntreHomeState extends State<EntreHome> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             child: Column(
               children: [
                 Padding(
@@ -190,98 +190,95 @@ class _EntreHomeState extends State<EntreHome> {
                 ),
                 Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const Entredetailspage(),
-                                  ));
-                            },
-                            child: Card(
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const Entredetailspage(),
+                                ));
+                          },
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
+                                color: const Color(0xff3BAA54),
                               ),
-                              child: Container(
-                                height: 150,
-                                width: 150,
-                                decoration: BoxDecoration(
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.shopping_cart_outlined,
+                                    color: Colors.black,
+                                    size: 40,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('Add your Product',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const Entreeventpage(),
+                                ));
+                          },
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Container(
+                              height: 150,
+                              width: 150,
+                              decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  color: const Color(0xff3BAA54),
-                                ),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.shopping_cart_outlined,
-                                      color: Colors.black,
-                                      size: 40,
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text('Add your Product',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
+                                  color: const Color(0xffBF68E8)),
+                              child: const Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.grid_view,
+                                    color: Colors.black,
+                                    size: 40,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text('View all',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                ],
                               ),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const Entreeventpage(),
-                                  ));
-                            },
-                            child: Card(
-                              elevation: 5,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Container(
-                                height: 150,
-                                width: 150,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: const Color(0xffBF68E8)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.grid_view,
-                                      color: Colors.black,
-                                      size: 40,
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text('View all',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -382,7 +379,7 @@ class _EntreHomeState extends State<EntreHome> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Charityhomepage(),
+                                  builder: (context) => const EntreCharityhomepage(),
                                 ));
                           },
                           child: Card(

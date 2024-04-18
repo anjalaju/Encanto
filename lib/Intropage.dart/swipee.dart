@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:main_project/USER/formscreen/loginpage.dart';
+import 'package:main_project/USER/formscreen/welcome.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
 
 class Swipee extends StatefulWidget {
@@ -156,10 +157,11 @@ class _Page3State extends State<Page3> {
   @override
   void initState() {
     super.initState();
+    
     // Wait for 3 seconds and then navigate to the login page
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => loginpage()),
+        MaterialPageRoute(builder: (context) => welcome()),
       );
     });
   }

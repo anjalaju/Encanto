@@ -90,10 +90,11 @@ class _OtherfunctioncardsState extends State<Otherfunctioncards> {
                             icon: const Icon(Icons.favorite))
                       ],
                     ),
+                    Text("save the date and other cards"),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        const Text("save the date and other cards"),
+                     
                         OutlinedButton(
                             style: ButtonStyle(
                                 foregroundColor: MaterialStateProperty.all(

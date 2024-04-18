@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/events/baby%20shower.dart';
 import 'package:main_project/ENTREPRENEUR/events/birthday.dart';
 import 'package:main_project/ENTREPRENEUR/events/bridalshower.dart';
@@ -74,8 +75,11 @@ class _EntreeventpageState extends State<Entreeventpage> {
           color: Colors.black,
         ),
          actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          IconButton(onPressed: () {
+               Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
+          }, icon: const Icon(Icons.chat_outlined))
         ]
       ),
       body: Column(

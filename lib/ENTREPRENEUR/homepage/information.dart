@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 
 class Entrenotificationpage extends StatefulWidget {
   const Entrenotificationpage({super.key});
@@ -35,17 +36,12 @@ class _EntrenotificationpageState extends State<Entrenotificationpage> {
           color: Colors.black,
         ),
         actions: [
+         
           IconButton(
               onPressed: () {
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => const Shortlist()));
-              },
-              icon: const Icon(Icons.favorite)),
-          IconButton(
-              onPressed: () {
-                // Navigator.of(context).push(MaterialPageRoute(
-                //   builder: (context) => Chatpage(),
-                // ));
+           Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => EntreChatpage(),
+                  ));
               },
               icon: const Icon(Icons.chat_outlined))
         ],
