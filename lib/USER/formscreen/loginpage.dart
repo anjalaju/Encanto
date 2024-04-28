@@ -229,7 +229,7 @@ class _LogaState extends State<loginpage> {
                                   Icon(Icons.error, color: Colors.white),
                                   SizedBox(width: 10),
                                   Text(
-                                    'Invalid Credential',
+                                    'Invalid Credential ',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
