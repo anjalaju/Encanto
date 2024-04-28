@@ -1,6 +1,11 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:main_project/USER/formscreen/otppage/signupotp.dart';
+import 'package:random_string/random_string.dart';
 
 class signup extends StatefulWidget {
   const signup({super.key});
@@ -13,8 +18,66 @@ class _LogaState extends State<signup> {
   bool _obscureText1 = true;
   bool _obscureText2 = true;
   final _formkey = GlobalKey<FormState>();
+  Future addfirebase(Map<String, dynamic> logininfomap, String userid) async {
+    return FirebaseFirestore.instance
+        .collection('firebase')
+        .doc(userid)
+        .set(logininfomap);
+  }
+
   String? _password;
   String? _confirmPassword;
+  String email = " ", password = "";
+
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
+  TextEditingController usernamecontroller = TextEditingController();
+  TextEditingController mobilecontroller = TextEditingController();
+  TextEditingController confirmcontroller = TextEditingController();
+
+  Signup() async {
+    if (password != null) {
+      try {
+        UserCredential credential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+        // Ensure that 'context' is available where this code is executed
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                signupotp(), // Make sure 'SignupOTP' is correctly named
+          ),
+        );
+        // String randomString(int length) {
+        //   const charset = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        //   Random random = Random();
+        //   return List.generate(
+        //       length, (_) => charset[random.nextInt(charset.length)]).join();
+        // }
+
+        String registered_user_id = randomString(10);
+        Map<String, dynamic> registereinfomap = {
+          "name": usernamecontroller.text,
+          "email": emailcontroller.text,
+          "password": passwordcontroller.text,
+          "id": registered_user_id,
+        };
+        await addfirebase(registereinfomap, registered_user_id);
+        const SnackBar(content: Text("Details added to firebase Succesfully"));
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('weak password'),
+          ));
+        } else if (e.code == 'email-already-in-use') {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('email already  use'),
+          ));
+        }
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +104,7 @@ class _LogaState extends State<signup> {
                   const Text("User Name"),
                   const SizedBox(height: 7),
                   TextFormField(
+                    controller: usernamecontroller,
                     keyboardType: TextInputType.name,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -72,6 +136,7 @@ class _LogaState extends State<signup> {
                   const Text("Mobile Number"),
                   const SizedBox(height: 7),
                   TextFormField(
+                    controller: mobilecontroller,
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -83,14 +148,13 @@ class _LogaState extends State<signup> {
 
                       return null;
                     },
-                     onChanged: (value) {
-                          if (value.length == 10) {
-                            FocusScope.of(context).nextFocus();
-                          }
-                        },
-                        inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                    onChanged: (value) {
+                      if (value.length == 10) {
+                        FocusScope.of(context).nextFocus();
+                      }
+                    },
+                    inputFormatters: [LengthLimitingTextInputFormatter(10)],
                     decoration: InputDecoration(
-                      
                       fillColor: Colors.white,
                       filled: true,
                       border: OutlineInputBorder(
@@ -105,7 +169,9 @@ class _LogaState extends State<signup> {
                   ),
                   const Text("Email"),
                   const SizedBox(height: 7),
-                  TextFormField(keyboardType: TextInputType.emailAddress,
+                  TextFormField(
+                    controller: emailcontroller,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter an email address';
@@ -116,7 +182,7 @@ class _LogaState extends State<signup> {
                       }
                       return null;
                     },
-                    obscureText: true,
+                    // obscureText: true,
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -133,6 +199,7 @@ class _LogaState extends State<signup> {
                   const Text("Password"),
                   const SizedBox(height: 7),
                   TextFormField(
+                    controller: passwordcontroller,
                     obscureText: _obscureText1,
                     decoration: InputDecoration(
                       fillColor: Colors.white,
@@ -180,6 +247,7 @@ class _LogaState extends State<signup> {
                   const Text("Confirm Password"),
                   const SizedBox(height: 7),
                   TextFormField(
+                      controller: confirmcontroller,
                       validator: (password) {
                         if (password == null || password.isEmpty) {
                           return 'Please re-enter your password';
@@ -243,35 +311,41 @@ class _LogaState extends State<signup> {
                                 const Color.fromARGB(255, 230, 27, 75))),
                         onPressed: () {
                           if (_formkey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 90, vertical: 60),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              content: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.verified_user_outlined,
-                                      color: Colors.white),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    'Registered Successfully',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              backgroundColor: Colors.green,
-                              behavior: SnackBarBehavior.floating,
-                              elevation: 4.0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              duration: const Duration(seconds: 3),
-                            ));
+                            setState(() {
+                              email = emailcontroller.text;
+                              password = passwordcontroller.text;
+                            });
+                            Signup();
+                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            //   margin: const EdgeInsets.symmetric(
+                            //       horizontal: 90, vertical: 60),
+                            //   padding: const EdgeInsets.symmetric(
+                            //       horizontal: 5, vertical: 5),
+                            //   content: const Row(
+                            //     mainAxisAlignment: MainAxisAlignment.center,
+                            //     children: [
+                            //       Icon(Icons.verified_user_outlined,
+                            //           color: Colors.white),
+                            //       SizedBox(width: 10),
+                            //       Text(
+                            //         'Registered Successfully',
+                            //         style: TextStyle(color: Colors.white),
+                            //       ),
+                            //     ],
+                            //   ),
+                            //   backgroundColor: Colors.green,
+                            //   behavior: SnackBarBehavior.floating,
+                            //   elevation: 4.0,
+                            //   shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(10.0)),
+                            //   duration: const Duration(seconds: 3),
+                            // ));
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const signupotp()));
-                          } else {
+                          } 
+                          else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 90, vertical: 60),

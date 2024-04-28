@@ -39,6 +39,10 @@ dependencies:
   splash_screen_view: ^3.0.0
   page_view_indicators: ^2.0.0
   flutter_animated_icons: ^1.0.1
+  firebase_core: ^2.30.0
+  firebase_auth: ^4.19.2
+  cloud_firestore: ^4.17.2
+  random_string: ^2.3.1
 
 dev_dependencies:
   flutter_test:

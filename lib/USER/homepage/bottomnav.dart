@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:main_project/USER/homepage/account.dart';
-
 import 'package:main_project/USER/homepage/homepage.dart';
 import 'package:main_project/USER/homepage/notificationpage.dart';
 import 'package:main_project/USER/homepage/offerpage.dart';

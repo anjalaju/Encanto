@@ -379,7 +379,7 @@ class _EntreHomeState extends State<EntreHome> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const EntreCharityhomepage(),
+                                  builder: (context) => EntreCharityhomepage(),
                                 ));
                           },
                           child: Card(

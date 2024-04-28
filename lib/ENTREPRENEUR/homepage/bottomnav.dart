@@ -40,19 +40,22 @@ Widget EntremyNav({
   return BottomNavigationBar(
     showUnselectedLabels: true,
     currentIndex: index!,
+    backgroundColor:  Color(0xffB7B7B7),
     selectedItemColor: Colors.pink,
     unselectedItemColor: Colors.black,
     showSelectedLabels: true,
     onTap: onTap,
-    items: const [
+    items:  [
       BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
-          backgroundColor: Color(0xffB7B7B7)),
+         
+          ),
       BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Entrepreneur',
-          backgroundColor: Color(0xffB7B7B7)),
+          backgroundColor: Color.fromARGB(255, 189, 5, 134)
+          ),
     ],
   );
 }

@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:main_project/USER/formscreen/forgetpassword/forgetpage.dart';
 import 'package:main_project/USER/formscreen/loginnotifi.dart';
@@ -12,8 +15,34 @@ class loginpage extends StatefulWidget {
 }
 
 class _LogaState extends State<loginpage> {
+  String email = " ", password = "";
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passwordcontroller = TextEditingController();
   bool _obscureText = true;
+
   final _formkey = GlobalKey<FormState>();
+
+  login() async {
+    if (password != null) {
+      try {
+        UserCredential credential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => loginnotification(),
+            ));
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('weak password')));
+        } else if (e.code == 'email-already-in-use') {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('email already use')));
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +70,7 @@ class _LogaState extends State<loginpage> {
                   const Text("Email"),
                   const SizedBox(height: 7),
                   TextFormField(
+                    controller: emailcontroller,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter an email address';
@@ -66,6 +96,7 @@ class _LogaState extends State<loginpage> {
                   const Text("Password"),
                   const SizedBox(height: 7),
                   TextFormField(
+                      controller: passwordcontroller,
                       validator: (password) {
                         // Password length should be at least 8 characters
                         if (password!.length < 4) {
@@ -116,9 +147,7 @@ class _LogaState extends State<loginpage> {
                                   ? Icons.visibility_off
                                   : Icons.visibility,
                             ),
-                          )
-                          )
-                          ),
+                          ))),
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -155,29 +184,35 @@ class _LogaState extends State<loginpage> {
                                 const Color.fromARGB(255, 230, 27, 75))),
                         onPressed: () {
                           if (_formkey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 90, vertical: 60),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              content: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.verified_user_outlined, color: Colors.white),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    'Login Successfully',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              backgroundColor: Colors.green,
-                              behavior: SnackBarBehavior.floating,
-                              elevation: 4.0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              duration: const Duration(seconds: 3),
-                            ));
+                            setState(() {
+                              email = emailcontroller.text;
+                              password = passwordcontroller.text;
+                            });
+                            login();
+                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            //   margin: const EdgeInsets.symmetric(
+                            //       horizontal: 90, vertical: 60),
+                            //   padding: const EdgeInsets.symmetric(
+                            //       horizontal: 5, vertical: 5),
+                            //   content: const Row(
+                            //     mainAxisAlignment: MainAxisAlignment.center,
+                            //     children: [
+                            //       Icon(Icons.verified_user_outlined,
+                            //           color: Colors.white),
+                            //       SizedBox(width: 10),
+                            //       Text(
+                            //         'Login Successfully',
+                            //         style: TextStyle(color: Colors.white),
+                            //       ),
+                            //     ],
+                            //   ),
+                            //   backgroundColor: Colors.green,
+                            //   behavior: SnackBarBehavior.floating,
+                            //   elevation: 4.0,
+                            //   shape: RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.circular(10.0)),
+                            //   duration: const Duration(seconds: 3),
+                            // ));
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

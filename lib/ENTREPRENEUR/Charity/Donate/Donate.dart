@@ -20,37 +20,6 @@ class _EntreDonateState extends State<EntreDonate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: myNav(
-        index: 0,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => bottomnavipage(
-                      indexnum: 0,
-                    )));
-          } else if (index == 1) {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => bottomnavipage(
-                      indexnum: 1,
-                    )));
-          } else if (index == 2) {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => bottomnavipage(
-                      indexnum: 2,
-                    )));
-          } else if (index == 3) {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => bottomnavipage(
-                      indexnum: 3,
-                    )));
-          } else if (index == 4) {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => bottomnavipage(
-                      indexnum: 4,
-                    )));
-          }
-        },
-      ),
       appBar: AppBar(
         title: const Text(
           'Donate',
@@ -108,7 +77,7 @@ class _EntreDonateState extends State<EntreDonate> {
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 70),
+                  padding: const EdgeInsets.symmetric(vertical: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
