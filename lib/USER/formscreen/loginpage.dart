@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -27,6 +26,8 @@ class _LogaState extends State<loginpage> {
       try {
         UserCredential credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
+            ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Login succesfull')));
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -213,10 +214,10 @@ class _LogaState extends State<loginpage> {
                             //       borderRadius: BorderRadius.circular(10.0)),
                             //   duration: const Duration(seconds: 3),
                             // ));
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => loginnotification()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => loginnotification()));
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               margin: const EdgeInsets.symmetric(

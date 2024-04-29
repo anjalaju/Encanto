@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +57,7 @@ class _LogaState extends State<signup> {
         Map<String, dynamic> registereinfomap = {
           "name": usernamecontroller.text,
           "email": emailcontroller.text,
-          "password": passwordcontroller.text,
+          "password": '',
           "id": registered_user_id,
         };
         await addfirebase(registereinfomap, registered_user_id);
@@ -340,12 +338,11 @@ class _LogaState extends State<signup> {
                             //       borderRadius: BorderRadius.circular(10.0)),
                             //   duration: const Duration(seconds: 3),
                             // ));
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const signupotp()));
-                          } 
-                          else {
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => const signupotp()));
+                          } else {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               margin: const EdgeInsets.symmetric(
                                   horizontal: 90, vertical: 60),

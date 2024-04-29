@@ -2,12 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:main_project/Bussines_logic/firebase_options.dart';
 import 'package:main_project/Intropage.dart/Swipe.dart';
-import 'package:main_project/USER/catergories/bridalwearaccess.dart';
-import 'package:main_project/USER/catogories2/bridalwear/Kanjeevaram.dart';
-import 'package:main_project/USER/formscreen/loginpage.dart';
-import 'package:main_project/USER/homepage/bottomnav.dart';
-
-import 'ENTREPRENEUR/formscreen/welcome.dart';
+import 'USER/Charity/Donate/Donatedress.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,14 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
-      // home: Splash(),
-      // home: Entrewelcome(),
+      // home: Donatedress(),
       home: Splash(),
-      // home: loginpage(),
-      // home: bottomnavipage(indexnum: 0,),
-      // home: Bridalwearandaccess(),
-      // home: Kanjivaaram(),
     );
   }
 }
