@@ -205,13 +205,10 @@ class _LogaState extends State<Donatedress> {
     final pickedFile = await picker.pickImage(source: source);
 
     if (pickedFile != null) {
-      // Use the picked image
       setState(() {
         _imageFile = File(pickedFile.path);
       });
-    } else {
-      // User canceled the image picking
-    }
+    } else {}
   }
 
   void _showImagePickerBottomSheet(BuildContext context) {
@@ -234,8 +231,7 @@ class _LogaState extends State<Donatedress> {
                 ),
                 onTap: () {
                   _pickImage(ImageSource.camera);
-                  Navigator.pop(
-                      context); // Close the bottom sheet after picking
+                  Navigator.pop(context);
                 },
               ),
               ListTile(
@@ -246,8 +242,7 @@ class _LogaState extends State<Donatedress> {
                 ),
                 onTap: () {
                   _pickImage(ImageSource.gallery);
-                  Navigator.pop(
-                      context); // Close the bottom sheet after picking
+                  Navigator.pop(context);
                 },
               ),
             ],

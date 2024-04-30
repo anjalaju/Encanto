@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:main_project/USER/formscreen/forgetpassword/forgetpage.dart';
 import 'package:main_project/USER/formscreen/loginnotifi.dart';
 import 'package:main_project/USER/formscreen/signup.dart';
+import 'package:page_view_indicators/circle_page_indicator.dart';
 
 class loginpage extends StatefulWidget {
   const loginpage({super.key});
@@ -20,20 +21,32 @@ class _LogaState extends State<loginpage> {
   bool _obscureText = true;
 
   final _formkey = GlobalKey<FormState>();
+  bool isloading = false;
 
   login() async {
     if (password != null) {
       try {
+        setState(() {
+          isloading = true;
+        });
         UserCredential credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
-            ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Login succesfull')));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Login successfull')));
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => loginnotification(),
             ));
+        setState(() {
+          isloading = false;
+        });
       } on FirebaseAuthException catch (e) {
+        setState(() {
+          isloading = false;
+        });
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Something wrong!!!')));
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text('weak password')));
@@ -104,17 +117,6 @@ class _LogaState extends State<loginpage> {
                           return 'Password must be at least 4 characters long.';
                         }
 
-                        // // Password should contain at least one uppercase letter
-                        // if (!password.contains(RegExp(r'[A-Z]'))) {
-                        //   return 'Password must contain at least one uppercase letter.';
-                        // }
-
-                        // // Password should contain at least one lowercase letter
-                        // if (!password.contains(RegExp(r'[a-z]'))) {
-                        //   return 'Password must contain at least one lowercase letter.';
-                        // }
-
-                        // Password should contain at least one digit
                         if (!password.contains(RegExp(r'[0-9]'))) {
                           return 'Password must contain at least one digit.';
                         }
@@ -171,84 +173,92 @@ class _LogaState extends State<loginpage> {
                     height: 80,
                   ),
                   Center(
-                    child: ElevatedButton(
-                        style: ButtonStyle(
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadiusDirectional.circular(10))),
-                            minimumSize:
-                                MaterialStateProperty.all(const Size(280, 50)),
-                            foregroundColor:
-                                MaterialStateProperty.all(Colors.black),
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color.fromARGB(255, 230, 27, 75))),
-                        onPressed: () {
-                          if (_formkey.currentState!.validate()) {
-                            setState(() {
-                              email = emailcontroller.text;
-                              password = passwordcontroller.text;
-                            });
-                            login();
-                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            //   margin: const EdgeInsets.symmetric(
-                            //       horizontal: 90, vertical: 60),
-                            //   padding: const EdgeInsets.symmetric(
-                            //       horizontal: 5, vertical: 5),
-                            //   content: const Row(
-                            //     mainAxisAlignment: MainAxisAlignment.center,
-                            //     children: [
-                            //       Icon(Icons.verified_user_outlined,
-                            //           color: Colors.white),
-                            //       SizedBox(width: 10),
-                            //       Text(
-                            //         'Login Successfully',
-                            //         style: TextStyle(color: Colors.white),
-                            //       ),
-                            //     ],
-                            //   ),
-                            //   backgroundColor: Colors.green,
-                            //   behavior: SnackBarBehavior.floating,
-                            //   elevation: 4.0,
-                            //   shape: RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.circular(10.0)),
-                            //   duration: const Duration(seconds: 3),
-                            // ));
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => loginnotification()));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 90, vertical: 60),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              content: const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.error, color: Colors.white),
-                                  SizedBox(width: 10),
-                                  Text(
-                                    'Invalid Credential',
-                                    style: TextStyle(color: Colors.white),
+                    child: isloading
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ElevatedButton(
+                            style: ButtonStyle(
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadiusDirectional.circular(
+                                                10))),
+                                minimumSize: MaterialStateProperty.all(
+                                    const Size(280, 50)),
+                                foregroundColor:
+                                    MaterialStateProperty.all(Colors.black),
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color.fromARGB(255, 230, 27, 75))),
+                            onPressed: () {
+                              if (_formkey.currentState!.validate()) {
+                                setState(() {
+                                  email = emailcontroller.text;
+                                  password = passwordcontroller.text;
+                                });
+                                login();
+                                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                //   margin: const EdgeInsets.symmetric(
+                                //       horizontal: 90, vertical: 60),
+                                //   padding: const EdgeInsets.symmetric(
+                                //       horizontal: 5, vertical: 5),
+                                //   content: const Row(
+                                //     mainAxisAlignment: MainAxisAlignment.center,
+                                //     children: [
+                                //       Icon(Icons.verified_user_outlined,
+                                //           color: Colors.white),
+                                //       SizedBox(width: 10),
+                                //       Text(
+                                //         'Login Successfully',
+                                //         style: TextStyle(color: Colors.white),
+                                //       ),
+                                //     ],
+                                //   ),
+                                //   backgroundColor: Colors.green,
+                                //   behavior: SnackBarBehavior.floating,
+                                //   elevation: 4.0,
+                                //   shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(10.0)),
+                                //   duration: const Duration(seconds: 3),
+                                // ));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => loginnotification()));
+                              } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 90, vertical: 60),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  content: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(Icons.error, color: Colors.white),
+                                      SizedBox(width: 10),
+                                      Text(
+                                        'Invalid Credential',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                              backgroundColor: Colors.red,
-                              behavior: SnackBarBehavior.floating,
-                              elevation: 4.0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              duration: const Duration(seconds: 3),
-                            ));
-                          }
-                        },
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
-                        )),
+                                  backgroundColor: Colors.red,
+                                  behavior: SnackBarBehavior.floating,
+                                  elevation: 4.0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  duration: const Duration(seconds: 3),
+                                ));
+                              }
+                            },
+                            child: const Text(
+                              "Login",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            )),
                   ),
                   const SizedBox(
                     height: 50,

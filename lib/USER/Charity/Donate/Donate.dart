@@ -107,7 +107,7 @@ class _DonateState extends State<Donate> {
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 70),
+                  padding: const EdgeInsets.symmetric(vertical: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [

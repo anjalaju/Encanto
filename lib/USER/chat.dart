@@ -12,10 +12,10 @@ class _ChatpageState extends State<Chatpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'SUMANGALI Auditorium',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
-        ),
+        // title: const Text(
+        //   'SUMANGALI Auditorium',
+        //   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+        // ),
         backgroundColor: Colors.transparent,
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),

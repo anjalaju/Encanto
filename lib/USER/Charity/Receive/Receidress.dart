@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/USER/chat.dart';
 
 class Receivedress extends StatefulWidget {
   const Receivedress({super.key});
@@ -90,7 +91,11 @@ class _ReceivedressState extends State<Receivedress> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Chatpage(),
+                  ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),

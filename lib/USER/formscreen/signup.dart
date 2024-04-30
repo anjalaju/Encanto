@@ -27,6 +27,8 @@ class _LogaState extends State<signup> {
   String? _confirmPassword;
   String email = " ", password = "";
 
+   bool isloading=false;
+
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
   TextEditingController usernamecontroller = TextEditingController();
@@ -36,6 +38,9 @@ class _LogaState extends State<signup> {
   Signup() async {
     if (password != null) {
       try {
+        setState(() {
+          isloading=true;
+        });
         UserCredential credential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
         // Ensure that 'context' is available where this code is executed
@@ -55,19 +60,29 @@ class _LogaState extends State<signup> {
 
         String registered_user_id = randomString(10);
         Map<String, dynamic> registereinfomap = {
-          "name": usernamecontroller.text,
-          "email": emailcontroller.text,
-          "password": '',
-          "id": registered_user_id,
+          "User_Name": usernamecontroller.text,
+          "Email": emailcontroller.text,
+          "Password": '',
+          "Id": registered_user_id,
+          "Mobile_No": mobilecontroller.text,
         };
         await addfirebase(registereinfomap, registered_user_id);
         const SnackBar(content: Text("Details added to firebase Succesfully"));
+        setState(() {
+          isloading=false;
+        });
       } on FirebaseAuthException catch (e) {
+        setState(() {
+          isloading=false;
+        });
         if (e.code == 'weak-password') {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('weak password'),
           ));
         } else if (e.code == 'email-already-in-use') {
+          setState(() {
+          isloading=false;
+        });
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('email already  use'),
           ));
@@ -295,7 +310,8 @@ class _LogaState extends State<signup> {
                     height: 30,
                   ),
                   Center(
-                    child: ElevatedButton(
+                    child:isloading 
+                    ? Center(child: CircularProgressIndicator(),): ElevatedButton(
                         style: ButtonStyle(
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(

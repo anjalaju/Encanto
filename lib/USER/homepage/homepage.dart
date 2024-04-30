@@ -27,7 +27,7 @@ class _homepageState extends State<homepage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             const CircleAvatar(
               radius: 60,
@@ -45,19 +45,19 @@ class _homepageState extends State<homepage> {
                   color: Colors.white),
             )),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
             ListTile(
               leading: const Icon(
                 Icons.festival,
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
               title: const Text(
                 'Vendor',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -72,13 +72,13 @@ class _homepageState extends State<homepage> {
               leading: const Icon(
                 Icons.settings,
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
               title: const Text(
                 'Settings',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -93,13 +93,13 @@ class _homepageState extends State<homepage> {
               leading: const Icon(
                 Icons.favorite,
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
               title: const Text(
                 'Favourate',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -114,13 +114,13 @@ class _homepageState extends State<homepage> {
               leading: const Icon(
                 Icons.menu_book_outlined,
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
               title: const Text(
                 'About us',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -135,13 +135,13 @@ class _homepageState extends State<homepage> {
               leading: const Icon(
                 Icons.edit_note,
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
               title: const Text(
                 'Complaints',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -156,13 +156,13 @@ class _homepageState extends State<homepage> {
               leading: const Icon(
                 Icons.edit_calendar,
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
               title: const Text(
                 'Reviews',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -177,13 +177,13 @@ class _homepageState extends State<homepage> {
               leading: const Icon(
                 Icons.logout,
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
               title: const Text(
                 'Logout',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: 20,
                   fontStyle: FontStyle.italic,
                 ),
               ),
