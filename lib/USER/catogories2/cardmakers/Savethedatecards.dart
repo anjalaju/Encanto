@@ -170,7 +170,9 @@ class _SavethedatecardsState extends State<Savethedatecards> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatpage(),
+                            builder: (context) => Chatpage(
+                              name: 'Save the date cards',
+                            ),
                           ));
                         },
                         child: const Row(

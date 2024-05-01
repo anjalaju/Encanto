@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:main_project/USER/Drawer/shotlist.dart';
 import 'package:main_project/USER/booking/booking.dart';
 import 'package:main_project/USER/chat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Bankquethall extends StatefulWidget {
   const Bankquethall({super.key});
@@ -166,7 +167,7 @@ class _BankquethallState extends State<Bankquethall> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                              Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
+                    builder: (context) => Chatpage(name:'Banquet Halls',),
                   ));
                         },
                         child: const Row(
@@ -195,7 +196,9 @@ class _BankquethallState extends State<Bankquethall> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                         _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -211,4 +214,13 @@ class _BankquethallState extends State<Bankquethall> {
       ),
     );
   }
+    void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  
 }

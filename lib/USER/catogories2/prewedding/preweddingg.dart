@@ -107,41 +107,41 @@ class _PreweddingshootState extends State<Preweddingshoott> {
                         ),
                       ],
                     ),
-                             Row(mainAxisAlignment: MainAxisAlignment.end,
-                               children: [
-                                
-                                 OutlinedButton(
-                                                             style: ButtonStyle(
-                                    foregroundColor: MaterialStateProperty.all(
-                                        const Color(0xff496FF7)),
-                                    textStyle: MaterialStateProperty.all(
-                                        const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14)),
-                                    minimumSize: MaterialStateProperty.all(
-                                        const Size(200, 50)),
-                                    side: MaterialStateProperty.all(
-                                        const BorderSide(color: Color(0xff496FF7))),
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20)))),
-                                                             onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                                            builder: (context) => Bookimgpage(),
-                                 ));
-                                                             },
-                                                             child: const Row(
-                                  children: [
-                                    Icon(Icons.message),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text("Book now"),
-                                  ],
-                                                             )),
-                               ],
-                             )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        OutlinedButton(
+                            style: ButtonStyle(
+                                foregroundColor: MaterialStateProperty.all(
+                                    const Color(0xff496FF7)),
+                                textStyle: MaterialStateProperty.all(
+                                    const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14)),
+                                minimumSize: MaterialStateProperty.all(
+                                    const Size(200, 50)),
+                                side: MaterialStateProperty.all(
+                                    const BorderSide(color: Color(0xff496FF7))),
+                                shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20)))),
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
+                            },
+                            child: const Row(
+                              children: [
+                                Icon(Icons.message),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text("Book now"),
+                              ],
+                            )),
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -169,7 +169,9 @@ class _PreweddingshootState extends State<Preweddingshoott> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatpage(),
+                            builder: (context) => Chatpage(
+                              name: 'Pre Wedding Photographers',
+                            ),
                           ));
                         },
                         child: const Row(

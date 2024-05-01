@@ -167,7 +167,7 @@ class _SmallfunctionState extends State<Smallfunction> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
+                    builder: (context) => Chatpage(name: 'Small Function / Party Halls',),
                   ));
                         },
                         child: const Row(

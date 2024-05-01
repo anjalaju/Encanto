@@ -167,7 +167,7 @@ class _KalyanamandappamState extends State<Kalyanamandappam> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
+                    builder: (context) => Chatpage(name: 'Kalyana Mandapam',),
                   ));
                         },
                         child: const Row(

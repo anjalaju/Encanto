@@ -16,7 +16,7 @@ class _RentalpageState extends State<Rentalpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: myNav(
+      bottomNavigationBar: myNav(
         index: 0,
         onTap: (index) {
           if (index == 0) {
@@ -39,8 +39,7 @@ class _RentalpageState extends State<Rentalpage> {
                 builder: (context) => bottomnavipage(
                       indexnum: 3,
                     )));
-          }
-           else if (index == 4) {
+          } else if (index == 4) {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => bottomnavipage(
                       indexnum: 4,
@@ -48,44 +47,49 @@ class _RentalpageState extends State<Rentalpage> {
           }
         },
       ),
-
-
       appBar: AppBar(
-        title: const Text(
-          'Rentals',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
-        ),
-        backgroundColor: Colors.transparent,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            thickness: 2,
+          title: const Text(
+            'Rentals',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+          ),
+          backgroundColor: Colors.transparent,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              thickness: 2,
+              color: Colors.black,
+              height: 1,
+            ),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+            ),
             color: Colors.black,
-            height: 1,
           ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
-         actions: [
-          IconButton(onPressed: () {
-                          Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Shortlist()));
-          }, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {
-             Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Chatpage(),
-                ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ]
-      ),
-      backgroundColor:Color(0xccF17474),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Shortlist()));
+                },
+                icon: const Icon(Icons.favorite)),
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Chatpage(
+                      name: 'Rentals',
+                    ),
+                  ));
+                },
+                icon: const Icon(Icons.chat_outlined))
+          ]),
+      backgroundColor: Color(0xccF17474),
       body: Column(
         children: [
           SizedBox(
@@ -116,7 +120,10 @@ class _RentalpageState extends State<Rentalpage> {
                           iconColor: Color.fromRGBO(0, 0, 0, 1),
                           trailing: Icon(Icons.navigate_next),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder:(context) => Rentaldress()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Rentaldress()));
                           },
                         ),
                       )
@@ -145,16 +152,18 @@ class _RentalpageState extends State<Rentalpage> {
                           textColor: Color.fromARGB(255, 0, 0, 0),
                           leading: Icon(Icons.library_books_outlined),
                           iconColor: Color.fromRGBO(0, 0, 0, 1),
-                           trailing: Icon(Icons.navigate_next),
+                          trailing: Icon(Icons.navigate_next),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder:(context) => Rentaljewellery()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Rentaljewellery()));
                           },
                         ),
                       )
                     ],
                   ),
                 ),
-                
               ],
             ),
           ),

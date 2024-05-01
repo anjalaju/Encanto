@@ -36,18 +36,18 @@ class _ShortlistphotographerState extends State<Shortlistphotographer> {
           ),
           color: Colors.black,
         ),
-        actions: [
-          IconButton(onPressed: () {
-            Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Shortlist()),
-      );
-          }, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {
-            Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Chatpage()),
-      );
-          }, icon: const Icon(Icons.chat_outlined))
-        ],
+      //   actions: [
+      //     IconButton(onPressed: () {
+      //       Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(builder: (context) => Shortlist()),
+      // );
+      //     }, icon: const Icon(Icons.favorite)),
+      //     IconButton(onPressed: () {
+      //       Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(builder: (context) => Chatpage()),
+      // );
+      //     }, icon: const Icon(Icons.chat_outlined))
+      //   ],
         
       ),
       body: SingleChildScrollView(
@@ -124,9 +124,9 @@ class _ShortlistphotographerState extends State<Shortlistphotographer> {
                                           borderRadius:
                                               BorderRadius.circular(15)))),
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Chatpage()),
-      );
+      //                           Navigator.of(context).pushReplacement(
+      //   MaterialPageRoute(builder: (context) => Chatpage()),
+      // );
                               },
                               child: const Row(
                                 children: [

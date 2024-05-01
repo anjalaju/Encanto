@@ -166,7 +166,9 @@ class _WeddingGownsState extends State<WeddingGowns> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatpage(),
+                            builder: (context) => Chatpage(
+                              name: 'Wedding Gowns',
+                            ),
                           ));
                         },
                         child: const Row(

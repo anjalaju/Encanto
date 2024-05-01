@@ -167,7 +167,9 @@ class _WesterndishesState extends State<Westerndishes> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatpage(),
+                            builder: (context) => Chatpage(
+                              name: 'Western Dishes',
+                            ),
                           ));
                         },
                         child: const Row(

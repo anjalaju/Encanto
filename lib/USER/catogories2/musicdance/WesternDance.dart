@@ -37,7 +37,6 @@ class _WesternDanceState extends State<WesternDance> {
           ),
           color: Colors.black,
         ),
-    
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,14 +83,13 @@ class _WesternDanceState extends State<WesternDance> {
                         const Text("karikulam musics"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -113,9 +111,9 @@ class _WesternDanceState extends State<WesternDance> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,16 +128,17 @@ class _WesternDanceState extends State<WesternDance> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "15000-20000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                       
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -166,9 +165,11 @@ class _WesternDanceState extends State<WesternDance> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Western Dance',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

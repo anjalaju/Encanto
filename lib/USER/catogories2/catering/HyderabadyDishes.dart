@@ -37,7 +37,6 @@ class _HyderabadyState extends State<Hyderabady> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,13 +83,13 @@ class _HyderabadyState extends State<Hyderabady> {
                         const Text("Royal Catering service"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-             
                     const Text("Veg+ Non Veg +western etc"),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,9 +112,9 @@ class _HyderabadyState extends State<Hyderabady> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,7 +129,10 @@ class _HyderabadyState extends State<Hyderabady> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "750000-100000 ",
                           style: TextStyle(
@@ -138,7 +140,6 @@ class _HyderabadyState extends State<Hyderabady> {
                         ),
                       ],
                     ),
-         
                   ],
                 ),
               ),
@@ -165,9 +166,11 @@ class _HyderabadyState extends State<Hyderabady> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Hyderabady Dishes',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

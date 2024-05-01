@@ -82,8 +82,9 @@ class _ReceivedressState extends State<Receivedress> {
                         style: ButtonStyle(
                             foregroundColor: MaterialStateProperty.all(
                                 const Color(0xffFF004D)),
-                            textStyle: MaterialStateProperty.all(const TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 14)),
+                            textStyle: MaterialStateProperty.all(
+                                const TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 14)),
                             minimumSize:
                                 MaterialStateProperty.all(const Size(250, 50)),
                             side: MaterialStateProperty.all(
@@ -93,8 +94,10 @@ class _ReceivedressState extends State<Receivedress> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                            builder: (context) => Chatpage(
+                              name: 'Dress',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

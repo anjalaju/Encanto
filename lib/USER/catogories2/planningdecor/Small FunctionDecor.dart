@@ -111,9 +111,9 @@ class _FunctionsState extends State<Functions> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -165,9 +165,11 @@ class _FunctionsState extends State<Functions> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Small Function Decor',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

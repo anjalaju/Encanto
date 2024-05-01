@@ -73,17 +73,17 @@ class _eventpageState extends State<eventpage> {
           ),
           color: Colors.black,
         ),
-         actions: [
-          IconButton(onPressed: () {
-                          Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Shortlist()));
-          }, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {
-             Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Chatpage(),
-                ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ]
+        //  actions: [
+        //   IconButton(onPressed: () {
+        //                   Navigator.push(context,
+        //             MaterialPageRoute(builder: (context) => const Shortlist()));
+        //   }, icon: const Icon(Icons.favorite)),
+        //   IconButton(onPressed: () {
+        //      Navigator.of(context).push(MaterialPageRoute(
+        //           builder: (context) => Chatpage(),
+        //         ));
+        //   }, icon: const Icon(Icons.chat_outlined))
+        // ]
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

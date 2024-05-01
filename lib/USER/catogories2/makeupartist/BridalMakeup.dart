@@ -37,7 +37,6 @@ class _BridalmakeupsState extends State<Bridalmakeups> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,14 +83,13 @@ class _BridalmakeupsState extends State<Bridalmakeups> {
                         const Text("Bridal Makeup by Sharmilaa"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -113,9 +111,9 @@ class _BridalmakeupsState extends State<Bridalmakeups> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,17 +128,21 @@ class _BridalmakeupsState extends State<Bridalmakeups> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "8000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        SizedBox(width: 6,),
-                          Text("per function")
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text("per function")
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -167,9 +169,11 @@ class _BridalmakeupsState extends State<Bridalmakeups> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Bridal Makeup',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

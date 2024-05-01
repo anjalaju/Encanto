@@ -14,7 +14,7 @@ class _GiftssState extends State<Giftss> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Gifts',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -37,7 +37,6 @@ class _GiftssState extends State<Giftss> {
           ),
           color: Colors.black,
         ),
-       
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,10 +83,11 @@ class _GiftssState extends State<Giftss> {
                         const Text("La Crafts"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
                     const Text("photo frame+ gift hamper etc are "),
@@ -113,9 +113,9 @@ class _GiftssState extends State<Giftss> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,7 +130,10 @@ class _GiftssState extends State<Giftss> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "1500-2000",
                           style: TextStyle(
@@ -138,7 +141,6 @@ class _GiftssState extends State<Giftss> {
                         ),
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -165,9 +167,11 @@ class _GiftssState extends State<Giftss> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Gifts',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

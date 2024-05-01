@@ -6,7 +6,6 @@ import 'package:main_project/ENTREPRENEUR/Charity/Donate/Donatedecoration.dart';
 import 'package:main_project/ENTREPRENEUR/Charity/Donate/Donatedress.dart';
 import 'package:main_project/ENTREPRENEUR/Charity/Donate/Donatejewellery.dart';
 import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
-import 'package:main_project/USER/homepage/bottomnav.dart';
 
 
 class EntreDonate extends StatefulWidget {

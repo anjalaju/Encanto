@@ -71,15 +71,15 @@ class _ReceiveState extends State<Receive> {
           ),
           color: Colors.black,
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Chatpage(),
-                ));
-              },
-              icon: const Icon(Icons.chat_outlined))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         Navigator.of(context).push(MaterialPageRoute(
+        //           builder: (context) => Chatpage(),
+        //         ));
+        //       },
+        //       icon: const Icon(Icons.chat_outlined))
+        // ],
       ),
       backgroundColor: const Color(0xffF9F8C9),
       body: SingleChildScrollView(

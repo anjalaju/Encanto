@@ -14,7 +14,7 @@ class _AccessoriesjewelleryState extends State<Accessoriesjewellery> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Accessories',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -37,7 +37,6 @@ class _AccessoriesjewelleryState extends State<Accessoriesjewellery> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,14 +83,13 @@ class _AccessoriesjewelleryState extends State<Accessoriesjewellery> {
                         const Text("Studio Tara"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -113,9 +111,9 @@ class _AccessoriesjewelleryState extends State<Accessoriesjewellery> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,10 +128,9 @@ class _AccessoriesjewelleryState extends State<Accessoriesjewellery> {
                     ),
                     Text(
                       "On Request",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-             
                   ],
                 ),
               ),
@@ -160,9 +157,11 @@ class _AccessoriesjewelleryState extends State<Accessoriesjewellery> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Accessories',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

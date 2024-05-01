@@ -89,11 +89,11 @@ class _WeddingcardsState extends State<Weddingcards> {
                             },
                             icon: const Icon(Icons.favorite))
                       ],
-                    ),Text("save the date & other cards"),
+                    ),
+                    Text("save the date & other cards"),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                      
                         OutlinedButton(
                             style: ButtonStyle(
                                 foregroundColor: MaterialStateProperty.all(
@@ -170,7 +170,9 @@ class _WeddingcardsState extends State<Weddingcards> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatpage(),
+                            builder: (context) => Chatpage(
+                              name: 'Wedding  cards',
+                            ),
                           ));
                         },
                         child: const Row(

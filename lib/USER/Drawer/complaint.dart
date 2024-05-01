@@ -36,23 +36,23 @@ class _ComplaintState extends State<Complaint> {
             ),
             color: Colors.black,
           ),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Shortlist()));
-                },
-                icon: const Icon(Icons.favorite)),
-            IconButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
-                },
-                icon: const Icon(Icons.chat_outlined))
-          ],
+          // actions: [
+          //   IconButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //             context,
+          //             MaterialPageRoute(
+          //                 builder: (context) => const Shortlist()));
+          //       },
+          //       icon: const Icon(Icons.favorite)),
+          //   IconButton(
+          //       onPressed: () {
+          //         Navigator.of(context).push(MaterialPageRoute(
+          //           builder: (context) => Chatpage(),
+          //         ));
+          //       },
+          //       icon: const Icon(Icons.chat_outlined))
+          // ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),

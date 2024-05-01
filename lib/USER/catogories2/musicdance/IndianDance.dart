@@ -14,7 +14,7 @@ class _IndiandanceState extends State<Indiandance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Indian Dance',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -37,7 +37,6 @@ class _IndiandanceState extends State<Indiandance> {
           ),
           color: Colors.black,
         ),
-      
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,14 +83,13 @@ class _IndiandanceState extends State<Indiandance> {
                         const Text("karikulam musics"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -113,9 +111,9 @@ class _IndiandanceState extends State<Indiandance> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,16 +128,17 @@ class _IndiandanceState extends State<Indiandance> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "15000-20000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                       
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -166,9 +165,11 @@ class _IndiandanceState extends State<Indiandance> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Indian Dance',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

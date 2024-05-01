@@ -37,7 +37,6 @@ class _FourstarhotelState extends State<Fourstarhotel> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,10 +83,11 @@ class _FourstarhotelState extends State<Fourstarhotel> {
                         const Text("SUMANGALI Auditorium"),
                         IconButton(
                             onPressed: () {
-                                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
                     const Text("non veg"),
@@ -113,9 +113,9 @@ class _FourstarhotelState extends State<Fourstarhotel> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                               Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,7 +130,10 @@ class _FourstarhotelState extends State<Fourstarhotel> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "35000",
                           style: TextStyle(
@@ -165,10 +168,11 @@ class _FourstarhotelState extends State<Fourstarhotel> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-
-                            Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: '4 star & Above Hotels',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

@@ -14,7 +14,7 @@ class _OthersnacksState extends State<Othersnacks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Other snacks',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -37,7 +37,6 @@ class _OthersnacksState extends State<Othersnacks> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,13 +83,13 @@ class _OthersnacksState extends State<Othersnacks> {
                         const Text("Royal Catering service"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-             
                     const Text("Veg+ Non Veg +western etc"),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,9 +112,9 @@ class _OthersnacksState extends State<Othersnacks> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -130,7 +129,10 @@ class _OthersnacksState extends State<Othersnacks> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "750000-100000 ",
                           style: TextStyle(
@@ -138,7 +140,6 @@ class _OthersnacksState extends State<Othersnacks> {
                         ),
                       ],
                     ),
-         
                   ],
                 ),
               ),
@@ -165,9 +166,11 @@ class _OthersnacksState extends State<Othersnacks> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Other snacks',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

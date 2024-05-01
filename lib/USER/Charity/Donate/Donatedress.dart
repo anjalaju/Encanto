@@ -99,27 +99,34 @@ class _LogaState extends State<Donatedress> {
                 Text("Image of product"),
                 SizedBox(height: 7),
                 Padding(
-                    padding: const EdgeInsets.only(right: 180),
-                    child: InkWell(
-                      onTap: () {
-                        _showImagePickerBottomSheet(context);
-                      },
-                      child: Container(
-                          height: 130,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(0)),
-                          child: _imageFile != null
-                              ? Image.file(
-                                  _imageFile!,
-                                  fit: BoxFit.fill,
-                                )
-                              : Icon(
-                                  Icons.add,
-                                  size: 40,
-                                )),
-                    )),
+                  padding: const EdgeInsets.only(right: 180),
+                  child: InkWell(
+                    onTap: () {
+                      _showImagePickerBottomSheet(context);
+                    },
+                    child: Container(
+                      height: 130,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(15), // Adjust the radius as needed
+                      ),
+                      child: _imageFile != null
+                          ? ClipRRect(
+                        borderRadius: BorderRadius.circular(15), // Adjust the radius as needed
+                        child: Image.file(
+                          _imageFile!,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                          : Icon(
+                        Icons.add,
+                        size: 40,
+                      ),
+                    ),
+                  ),
+                ),
+
                 SizedBox(
                   height: 10,
                 ),

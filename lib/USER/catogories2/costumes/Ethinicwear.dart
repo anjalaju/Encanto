@@ -14,7 +14,7 @@ class _EthinicwearState extends State<Ethinicwear> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Ethinic wear',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -37,7 +37,6 @@ class _EthinicwearState extends State<Ethinicwear> {
           ),
           color: Colors.black,
         ),
-     
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,10 +83,11 @@ class _EthinicwearState extends State<Ethinicwear> {
                         const Text("zalloshe boutique"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
                     Row(
@@ -123,9 +123,9 @@ class _EthinicwearState extends State<Ethinicwear> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -164,9 +164,11 @@ class _EthinicwearState extends State<Ethinicwear> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Ethinic wear',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

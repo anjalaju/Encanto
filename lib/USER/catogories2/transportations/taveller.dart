@@ -170,7 +170,7 @@ class _TravellerbusState extends State<Travellerbus> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                            Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
+                    builder: (context) => Chatpage(name: 'Traveller bus',),
                   ));
                         },
                         child: const Row(

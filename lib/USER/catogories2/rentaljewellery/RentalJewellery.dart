@@ -165,7 +165,9 @@ class _RentalJewelleryState extends State<RentalJewellery> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatpage(),
+                            builder: (context) => Chatpage(
+                              name: 'Rentals Jewellery',
+                            ),
                           ));
                         },
                         child: const Row(

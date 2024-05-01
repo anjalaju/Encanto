@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:main_project/USER/formscreen/loginpage.dart';
 import 'package:main_project/USER/formscreen/welcome.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
 

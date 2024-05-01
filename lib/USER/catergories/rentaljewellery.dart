@@ -15,7 +15,7 @@ class _RentaljewelleryState extends State<Rentaljewellery> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: myNav(
+      bottomNavigationBar: myNav(
         index: 0,
         onTap: (index) {
           if (index == 0) {
@@ -38,8 +38,7 @@ class _RentaljewelleryState extends State<Rentaljewellery> {
                 builder: (context) => bottomnavipage(
                       indexnum: 3,
                     )));
-          }
-           else if (index == 4) {
+          } else if (index == 4) {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => bottomnavipage(
                       indexnum: 4,
@@ -47,44 +46,49 @@ class _RentaljewelleryState extends State<Rentaljewellery> {
           }
         },
       ),
-
-
-       appBar: AppBar(
-        title: const Text(
-          'Rentals Jewellery',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
-        ),
-        backgroundColor: Colors.transparent,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            thickness: 2,
+      appBar: AppBar(
+          title: const Text(
+            'Rentals Jewellery',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+          ),
+          backgroundColor: Colors.transparent,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              thickness: 2,
+              color: Colors.black,
+              height: 1,
+            ),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+            ),
             color: Colors.black,
-            height: 1,
           ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
-         actions: [
-          IconButton(onPressed: () {
-                          Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Shortlist()));
-          }, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {
-             Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Chatpage(),
-                ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ]
-      ),
-      backgroundColor:Color(0xccFF004D),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Shortlist()));
+                },
+                icon: const Icon(Icons.favorite)),
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => Chatpage(
+                      name: 'Rentals Jewellery',
+                    ),
+                  ));
+                },
+                icon: const Icon(Icons.chat_outlined))
+          ]),
+      backgroundColor: Color(0xccFF004D),
       body: Column(
         children: [
           SizedBox(
@@ -115,15 +119,16 @@ class _RentaljewelleryState extends State<Rentaljewellery> {
                           iconColor: Color.fromRGBO(0, 0, 0, 1),
                           trailing: Icon(Icons.navigate_next),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder:(context) => RentalJewellery()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => RentalJewellery()));
                           },
                         ),
                       )
                     ],
                   ),
                 ),
-              
-                
               ],
             ),
           ),

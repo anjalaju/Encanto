@@ -14,7 +14,7 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
- appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Kurties & Saries',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -37,7 +37,6 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
           ),
           color: Colors.black,
         ),
-      
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,28 +83,29 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
                         const Text("zalloshe boutique"),
                         IconButton(
                             onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-        Row(
-                      children: [
-                        Icon(Icons.currency_rupee,size: 20,),
-                        Text(
-                          "15000",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.currency_rupee,
+                              size: 20,
+                            ),
+                            Text(
+                              "15000",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                          ],
                         ),
-                
-                      ],
-                    ),
                         OutlinedButton(
                             style: ButtonStyle(
                                 foregroundColor: MaterialStateProperty.all(
@@ -123,9 +123,9 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -138,8 +138,6 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
                             ))
                       ],
                     ),
-                  
-             
                   ],
                 ),
               ),
@@ -166,9 +164,11 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Kurties & Saries',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [

@@ -170,7 +170,7 @@ class _ResortsState extends State<Resorts> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(),
+                    builder: (context) => Chatpage(name: 'Resorts',),
                   ));
                         },
                         child: const Row(

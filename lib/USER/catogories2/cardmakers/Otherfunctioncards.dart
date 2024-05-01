@@ -94,7 +94,6 @@ class _OtherfunctioncardsState extends State<Otherfunctioncards> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                     
                         OutlinedButton(
                             style: ButtonStyle(
                                 foregroundColor: MaterialStateProperty.all(
@@ -171,7 +170,9 @@ class _OtherfunctioncardsState extends State<Otherfunctioncards> {
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => Chatpage(),
+                            builder: (context) => Chatpage(
+                              name: 'Other function cards',
+                            ),
                           ));
                         },
                         child: const Row(

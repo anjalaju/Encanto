@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:main_project/USER/Charity/Homepage.dart';
 import 'package:main_project/USER/Drawer/Revieww.dart';
 import 'package:main_project/USER/Drawer/Settings.dart';
@@ -18,12 +21,22 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  final _firestore=FirebaseFirestore.instance;
+  final _auth=FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    String id=_auth.currentUser!.uid;
     return Scaffold(
+  
       drawer: Drawer(
         backgroundColor: const Color(0xff6C6974),
-        child: ListView(
+        child: StreamBuilder(stream: _firestore.collection('firebase').snapshots(),
+         builder: (context,snapshot)
+         {
+         
+          final  data= snapshot.data!.docs.first;
+      
+           return  ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             const SizedBox(
@@ -35,15 +48,15 @@ class _homepageState extends State<homepage> {
                 "images/profile.jpg",
               ),
             ),
-            const Center(
-                child: Text(
-              "Anjal",
-              style: TextStyle(
-                  fontSize: 24,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white),
-            )),
+             Center(
+                  child: Text(
+                "${data['User_Name']?? ''}",
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white),
+              )),
             const SizedBox(
               height: 30,
             ),
@@ -259,7 +272,10 @@ class _homepageState extends State<homepage> {
             ),
             const Divider(),
           ],
-        ),
+        );
+         }
+         )
+       
       ),
       appBar: AppBar(
         title: const Text(
@@ -275,21 +291,21 @@ class _homepageState extends State<homepage> {
             height: 1,
           ),
         ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Shortlist()));
-              },
-              icon: const Icon(Icons.favorite)),
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => Chatpage(),
-                ));
-              },
-              icon: const Icon(Icons.chat_outlined))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         Navigator.push(context,
+        //             MaterialPageRoute(builder: (context) => const Shortlist()));
+        //       },
+        //       icon: const Icon(Icons.favorite)),
+        //   IconButton(
+        //       onPressed: () {
+        //         Navigator.of(context).push(MaterialPageRoute(
+        //           builder: (context) => Chatpage(),
+        //         ));
+        //       },
+        //       icon: const Icon(Icons.chat_outlined))
+        // ],
       ),
       body: SingleChildScrollView(
         child: Column(
