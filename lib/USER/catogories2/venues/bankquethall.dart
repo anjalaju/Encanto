@@ -15,7 +15,7 @@ class _BankquethallState extends State<Bankquethall> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Banquet Halls',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -38,7 +38,6 @@ class _BankquethallState extends State<Bankquethall> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -86,9 +85,10 @@ class _BankquethallState extends State<Bankquethall> {
                         IconButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                                builder: (context) => Shortlist(),
+                              ));
+                            },
+                            icon: const Icon(Icons.favorite))
                       ],
                     ),
                     const Text("non veg"),
@@ -114,9 +114,9 @@ class _BankquethallState extends State<Bankquethall> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -131,7 +131,10 @@ class _BankquethallState extends State<Bankquethall> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "35000",
                           style: TextStyle(
@@ -143,7 +146,7 @@ class _BankquethallState extends State<Bankquethall> {
                   ],
                 ),
               ),
-               const SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -166,9 +169,11 @@ class _BankquethallState extends State<Bankquethall> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                             Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(name:'Banquet Halls',),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Banquet Halls',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [
@@ -197,7 +202,7 @@ class _BankquethallState extends State<Bankquethall> {
                         ),
                       ),
                       onPressed: () {
-                         _makePhoneCall('7025053483');
+                        _makePhoneCall('7025053483');
                       },
                       child: const Row(
                         children: [
@@ -214,7 +219,8 @@ class _BankquethallState extends State<Bankquethall> {
       ),
     );
   }
-    void _makePhoneCall(String phoneNumber) async {
+
+  void _makePhoneCall(String phoneNumber) async {
     final url = 'tel:$phoneNumber';
     if (await canLaunch(url)) {
       await launch(url);
@@ -222,5 +228,4 @@ class _BankquethallState extends State<Bankquethall> {
       throw 'Could not launch $url';
     }
   }
-  
 }

@@ -103,23 +103,56 @@
 //     );
 //   }
 // }
+
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:main_project/Intropage.dart/swipee.dart';
+import 'package:main_project/USER/homepage/bottomnav.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:splash_screen_view/SplashScreenView.dart';
+class Splash extends StatefulWidget {
+  @override
+  State<Splash> createState() => _SplashState();
+}
 
-class Splash extends StatelessWidget {
+class _SplashState extends State<Splash> {
+  @override
+  void initState() {
+    Timer(Duration(seconds: 1), () => check());
+    super.initState();
+  }
+
+  check() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    String? name = preferences.getString('isloggin');
+
+    if (name != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => bottomnavipage(
+              indexnum: 0,
+            ),
+          ));
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Swipee(),
+          ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SplashScreenView(
-      navigateRoute: Swipee(),
-      duration: 4000,
-      imageSize: 250,
-      imageSrc: "images/logo.png",
-      text: "",
-      textType: TextType.TyperAnimatedText,
-      textStyle: TextStyle(fontSize: 30),
-      backgroundColor:Color(0xffE72245)
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      color: Color(0xffE72245),
+      child: Center(
+        child: Image.asset("images/logo.png"),
+      ),
     );
   }
 }
@@ -127,3 +160,13 @@ class Splash extends StatelessWidget {
 
 
 
+// SplashScreenView(
+//       navigateRoute: Swipee(),
+//       duration: 4000,
+//       imageSize: 250,
+//       imageSrc: ,
+//       text: "",
+//       textType: TextType.TyperAnimatedText,
+//       textStyle: TextStyle(fontSize: 30),
+//       backgroundColor:Color(0xffE72245)
+//     );

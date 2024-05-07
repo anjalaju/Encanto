@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepsherwani extends StatefulWidget {
   const Entrepsherwani({super.key});
@@ -11,7 +13,7 @@ class _EntrepsherwaniState extends State<Entrepsherwani> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Sherwani',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -34,7 +36,6 @@ class _EntrepsherwaniState extends State<Entrepsherwani> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -83,21 +84,20 @@ class _EntrepsherwaniState extends State<Entrepsherwani> {
                             onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     const Text("Starting price"),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "15000-20000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-              
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -123,7 +123,13 @@ class _EntrepsherwaniState extends State<Entrepsherwani> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EntreChatpage(
+                              name: 'Sherwani',
+                            ),
+                          ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -150,7 +156,9 @@ class _EntrepsherwaniState extends State<Entrepsherwani> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -165,5 +173,13 @@ class _EntrepsherwaniState extends State<Entrepsherwani> {
         ),
       ),
     );
+  }
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

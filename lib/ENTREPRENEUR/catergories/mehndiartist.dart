@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/mehndiartist/Mehndi%20artist.dart';
 import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
 
@@ -55,13 +54,13 @@ class _EntremehndipageState extends State<Entremehndipage> {
           ),
           color: Colors.black,
         ),
-         actions: [
-          IconButton(onPressed: () {
-               Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EntreChatpage(),
-                  ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ]
+        //  actions: [
+        //   IconButton(onPressed: () {
+        //        Navigator.of(context).push(MaterialPageRoute(
+        //             builder: (context) => EntreChatpage(),
+        //           ));
+        //   }, icon: const Icon(Icons.chat_outlined))
+        // ]
       ),
       backgroundColor:Color(0xffFCC5D5),
       body: Column(

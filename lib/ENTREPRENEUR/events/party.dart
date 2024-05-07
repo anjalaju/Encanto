@@ -70,13 +70,13 @@ class _EntrepartyState extends State<Entreparty> {
           ),
           color: Colors.black,
         ),
-         actions: [
-          IconButton(onPressed: () {
-               Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EntreChatpage(),
-                  ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ]
+        //  actions: [
+        //   IconButton(onPressed: () {
+        //        Navigator.of(context).push(MaterialPageRoute(
+        //             builder: (context) => EntreChatpage(),
+        //           ));
+        //   }, icon: const Icon(Icons.chat_outlined))
+        // ]
       ),
       body:  Column(
         mainAxisAlignment: MainAxisAlignment.center,

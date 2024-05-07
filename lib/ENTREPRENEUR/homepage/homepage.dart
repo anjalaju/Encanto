@@ -155,13 +155,7 @@ class _EntreHomeState extends State<EntreHome> {
                               },
                               icon: Icon(Icons.settings),
                             ),
-                            IconButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => EntreChatpage(),
-                                  ));
-                                },
-                                icon: Icon(Icons.chat)),
+                            
                           ],
                         )
                       ],

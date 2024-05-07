@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:main_project/ENTREPRENEUR/Charity/Donate/Donate.dart';
-import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
-
 
 class EntreCharityhomepage extends StatefulWidget {
   const EntreCharityhomepage({super.key});
@@ -38,22 +36,22 @@ class _EntreCharityhomepageState extends State<EntreCharityhomepage> {
           ),
           color: Colors.black,
         ),
-        actions: [
-       
-          IconButton(onPressed: () {
-             Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => EntreChatpage(),
-                ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ],
+        // actions: [
+
+        //   IconButton(onPressed: () {
+        //      Navigator.of(context).push(MaterialPageRoute(
+        //           builder: (context) => EntreChatpage(),
+        //         ));
+        //   }, icon: const Icon(Icons.chat_outlined))
+        // ],
       ),
-      body: Container(height: MediaQuery.of(context).size.height,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
             Expanded(
               child: Container(
-              
                 width: MediaQuery.of(context).size.width,
                 // color: const Color.fromARGB(255, 248, 0, 83),
                 child: const Image(
@@ -66,11 +64,12 @@ class _EntreCharityhomepageState extends State<EntreCharityhomepage> {
             ),
             Expanded(
               child: Container(
-              decoration: BoxDecoration(
-                  color: const Color(0xff80754E),
-                  borderRadius: BorderRadius.only(topLeft:Radius.circular(20),topRight: Radius.circular(20))),
+                decoration: BoxDecoration(
+                    color: const Color(0xff80754E),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
                 width: MediaQuery.of(context).size.width,
-
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -120,8 +119,6 @@ class _EntreCharityhomepageState extends State<EntreCharityhomepage> {
                         ),
                       ),
                     ),
-                  
-
                   ],
                 ),
               ),

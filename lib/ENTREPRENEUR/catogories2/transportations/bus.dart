@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepbuss extends StatefulWidget {
   const Entrepbuss({super.key});
@@ -34,7 +36,6 @@ class _EntrepbussState extends State<Entrepbuss> {
           ),
           color: Colors.black,
         ),
-      
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -83,21 +84,20 @@ class _EntrepbussState extends State<Entrepbuss> {
                             onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     const Text(" Starting price"),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "15000-20000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                   
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -123,7 +123,13 @@ class _EntrepbussState extends State<Entrepbuss> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EntreChatpage(
+                              name: 'Bus',
+                            ),
+                          ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -150,7 +156,9 @@ class _EntrepbussState extends State<Entrepbuss> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -165,5 +173,14 @@ class _EntrepbussState extends State<Entrepbuss> {
         ),
       ),
     );
+  }
+}
+
+void _makePhoneCall(String phoneNumber) async {
+  final url = 'tel:$phoneNumber';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

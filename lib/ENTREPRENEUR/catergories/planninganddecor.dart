@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/planningdecor/Decarators.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/planningdecor/Small%20FunctionDecor.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/planningdecor/WeddingPlanners.dart';
@@ -58,13 +57,13 @@ class _EntreplanningpageState extends State<Entreplanningpage> {
           ),
           color: Colors.black,
         ),
-         actions: [
-          IconButton(onPressed: () {
-               Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EntreChatpage(),
-                  ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ],
+        //  actions: [
+        //   IconButton(onPressed: () {
+        //        Navigator.of(context).push(MaterialPageRoute(
+        //             builder: (context) => EntreChatpage(),
+        //           ));
+        //   }, icon: const Icon(Icons.chat_outlined))
+        // ],
         
       ),
       backgroundColor:Color(0xffE1B7E8),

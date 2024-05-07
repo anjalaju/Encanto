@@ -12,7 +12,8 @@ class _ChatpageState extends State<Chatpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(color:Colors.grey.shade50,
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.grey.shade50,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
@@ -29,7 +30,8 @@ class _ChatpageState extends State<Chatpage> {
               SizedBox(
                 width: 10,
               ),
-              CircleAvatar(radius: 25,
+              CircleAvatar(
+                radius: 25,
                 backgroundColor: Colors.green,
                 child: IconButton(
                   onPressed: () {

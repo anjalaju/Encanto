@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/venues/4star&AboveHotels.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/venues/KalyanaMandapam.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/venues/Resorts.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/venues/SmallFunction.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/venues/bankquethall.dart';
 import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
-
 
 class Entravenuespage extends StatefulWidget {
   const Entravenuespage({super.key});
@@ -19,7 +17,7 @@ class _EntravenuespageState extends State<Entravenuespage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    bottomNavigationBar: EntremyNav(
+      bottomNavigationBar: EntremyNav(
         index: 0,
         onTap: (index) {
           if (index == 0) {
@@ -58,13 +56,15 @@ class _EntravenuespageState extends State<Entravenuespage> {
           ),
           color: Colors.black,
         ),
-        actions: [
-          IconButton(onPressed: () {
-               Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EntreChatpage(),
-                  ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ],
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         Navigator.of(context).push(MaterialPageRoute(
+        //           builder: (context) => EntreChatpage(),
+        //         ));
+        //       },
+        //       icon: const Icon(Icons.chat_outlined))
+        // ],
       ),
       backgroundColor: Color(0xff71A7C6),
       body: Column(

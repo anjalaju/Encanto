@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepsavedate extends StatefulWidget {
   const Entrepsavedate({super.key});
@@ -124,7 +126,11 @@ class _EntrepsavedateState extends State<Entrepsavedate> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                           Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => EntreChatpage(name: 'Save the date cards',),
+                ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -151,7 +157,16 @@ class _EntrepsavedateState extends State<Entrepsavedate> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                         void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),

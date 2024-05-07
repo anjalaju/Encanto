@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepfourstar extends StatefulWidget {
   const Entrepfourstar({super.key});
@@ -34,7 +36,6 @@ class _EntrepfourstarState extends State<Entrepfourstar> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -88,7 +89,10 @@ class _EntrepfourstarState extends State<Entrepfourstar> {
                     const Text("Rental cost"),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "35000",
                           style: TextStyle(
@@ -122,7 +126,13 @@ class _EntrepfourstarState extends State<Entrepfourstar> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EntreChatpage(
+                              name: '4 star & Above Hotels',
+                            ),
+                          ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -149,7 +159,9 @@ class _EntrepfourstarState extends State<Entrepfourstar> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -164,5 +176,14 @@ class _EntrepfourstarState extends State<Entrepfourstar> {
         ),
       ),
     );
+  }
+
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

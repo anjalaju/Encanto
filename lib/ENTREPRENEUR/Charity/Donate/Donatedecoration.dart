@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 
@@ -94,26 +97,38 @@ class _LogaState extends State<EntreDonatedecoration> {
                   ),
                 ),
                 
-               
-
                 SizedBox(height: 10),
                 Text("Image of product"),
                 SizedBox(height: 7),
                 Padding(
                   padding: const EdgeInsets.only(right: 180),
-                  child: TextField(
-                    maxLines: 4,
-                    decoration: InputDecoration(
-                      
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  child: InkWell(
+                    onTap: () {
+                      _showImagePickerBottomSheet(context);
+                    },
+                    child: Container(
+                      height: 130,
+                      width: 150,
+                      decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(15), // Adjust the radius as needed
+                      ),
+                      child: _imageFile != null
+                          ? ClipRRect(
+                        borderRadius: BorderRadius.circular(15), // Adjust the radius as needed
+                        child: Image.file(
+                          _imageFile!,
+                          fit: BoxFit.fill,
+                        ),
+                      )
+                          : Icon(
+                        Icons.add,
+                        size: 40,
                       ),
                     ),
                   ),
                 ),
-
+    
 
 
     SizedBox(
@@ -198,6 +213,60 @@ class _LogaState extends State<EntreDonatedecoration> {
           ),
         ));
   } 
+    File? _imageFile;
+  Future<void> _pickImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    } else {}
+  }
+
+  void _showImagePickerBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                leading: Icon(
+                  Icons.camera,
+                  color: Colors.indigo,
+                ),
+                title: Text(
+                  'Take a photo',
+                  style: TextStyle(color: Colors.indigo),
+                ),
+                onTap: () {
+                  _pickImage(ImageSource.camera);
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.photo_library, color: Colors.indigo),
+                title: Text(
+                  'Choose from gallery',
+                  style: TextStyle(color: Colors.indigo),
+                ),
+                onTap: () {
+                  _pickImage(ImageSource.gallery);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+
       }
     
   

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entreptravveller extends StatefulWidget {
   const Entreptravveller({super.key});
@@ -11,34 +13,33 @@ class _EntreptravvellerState extends State<Entreptravveller> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
-        title: const Text(
-          'Traveller bus',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
-        ),
-        backgroundColor: Colors.transparent,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            thickness: 2,
+      appBar: AppBar(
+          title: const Text(
+            'Traveller bus',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+          ),
+          backgroundColor: Colors.transparent,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              thickness: 2,
+              color: Colors.black,
+              height: 1,
+            ),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+            ),
             color: Colors.black,
-            height: 1,
           ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
-         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
-        ]
-      ),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -86,21 +87,20 @@ class _EntreptravvellerState extends State<Entreptravveller> {
                             onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     const Text(" Starting price"),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "15000-20000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                   
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -126,7 +126,13 @@ class _EntreptravvellerState extends State<Entreptravveller> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EntreChatpage(
+                              name: 'Traveller bus',
+                            ),
+                          ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -153,7 +159,9 @@ class _EntreptravvellerState extends State<Entreptravveller> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -168,5 +176,14 @@ class _EntreptravvellerState extends State<Entreptravveller> {
         ),
       ),
     );
+  }
+
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepgroonrental extends StatefulWidget {
   const Entrepgroonrental({super.key});
@@ -11,7 +13,7 @@ class _EntrepgroonrentalState extends State<Entrepgroonrental> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Groom Rental Dress',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -34,7 +36,6 @@ class _EntrepgroonrentalState extends State<Entrepgroonrental> {
           ),
           color: Colors.black,
         ),
-    
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -83,22 +84,24 @@ class _EntrepgroonrentalState extends State<Entrepgroonrental> {
                             onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     const Text(" Starting price"),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "7000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        SizedBox(width: 6,),
-                          Text("per day")
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text("per day")
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -124,7 +127,13 @@ class _EntrepgroonrentalState extends State<Entrepgroonrental> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EntreChatpage(
+                              name: 'Groom Rental Dress',
+                            ),
+                          ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -151,7 +160,9 @@ class _EntrepgroonrentalState extends State<Entrepgroonrental> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -166,5 +177,14 @@ class _EntrepgroonrentalState extends State<Entrepgroonrental> {
         ),
       ),
     );
+  }
+
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

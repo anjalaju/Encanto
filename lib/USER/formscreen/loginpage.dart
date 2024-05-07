@@ -1,11 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:main_project/USER/formscreen/forgetpassword/forgetpage.dart';
 import 'package:main_project/USER/formscreen/loginnotifi.dart';
 import 'package:main_project/USER/formscreen/signup.dart';
-import 'package:page_view_indicators/circle_page_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class loginpage extends StatefulWidget {
   const loginpage({super.key});
@@ -24,6 +23,7 @@ class _LogaState extends State<loginpage> {
   bool isloading = false;
 
   login() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     if (password != null) {
       try {
         setState(() {
@@ -31,6 +31,9 @@ class _LogaState extends State<loginpage> {
         });
         UserCredential credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
+
+        preferences.setString('isloggin', credential.user!.uid);
+
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Login successfull')));
         Navigator.pushReplacement(

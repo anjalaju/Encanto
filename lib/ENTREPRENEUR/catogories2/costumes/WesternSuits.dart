@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepwestsuits extends StatefulWidget {
   const Entrepwestsuits({super.key});
@@ -123,7 +125,9 @@ class _EntrepwestsuitsState extends State<Entrepwestsuits> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {           Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => EntreChatpage(name: 'Western Suits',),
+                ));},
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -150,7 +154,9 @@ class _EntrepwestsuitsState extends State<Entrepwestsuits> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                                                       _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -165,5 +171,13 @@ class _EntrepwestsuitsState extends State<Entrepwestsuits> {
         ),
       ),
     );
+  }
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

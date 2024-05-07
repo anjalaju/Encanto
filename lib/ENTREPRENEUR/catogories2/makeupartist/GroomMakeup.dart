@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepgroommake extends StatefulWidget {
   const Entrepgroommake({super.key});
@@ -124,7 +126,11 @@ class _EntrepgroommakeState extends State<Entrepgroommake> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                                     Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => EntreChatpage(name: 'Groom Makeup ',),
+                ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -151,7 +157,9 @@ class _EntrepgroommakeState extends State<Entrepgroommake> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                                                       _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -166,5 +174,13 @@ class _EntrepgroommakeState extends State<Entrepgroommake> {
         ),
       ),
     );
+  }
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

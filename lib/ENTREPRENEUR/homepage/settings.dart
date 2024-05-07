@@ -38,14 +38,7 @@ class _EntreSettingpageState extends State<EntreSettingpage> {
           ),
           color: Colors.black,
         ),
-        actions: [
-
-          IconButton(onPressed: () {
-             Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => EntreChatpage(),
-                ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ],
+      
       ),
       body: ListView(
         children: [

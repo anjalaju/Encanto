@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:main_project/USER/Drawer/shotlist.dart';
 import 'package:main_project/USER/booking/booking.dart';
 import 'package:main_project/USER/chat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class KurtiesSaries extends StatefulWidget {
   const KurtiesSaries({super.key});
@@ -196,7 +197,9 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                         _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -211,5 +214,13 @@ class _KurtiesSariesState extends State<KurtiesSaries> {
         ),
       ),
     );
+  }
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

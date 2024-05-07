@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepbridmake extends StatefulWidget {
   const Entrepbridmake({super.key});
@@ -34,7 +36,6 @@ class _EntrepbridmakeState extends State<Entrepbridmake> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -83,22 +84,24 @@ class _EntrepbridmakeState extends State<Entrepbridmake> {
                             onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     const Text("bridal makeup price"),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "8000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        SizedBox(width: 6,),
-                          Text("per function")
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text("per function")
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -124,7 +127,13 @@ class _EntrepbridmakeState extends State<Entrepbridmake> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EntreChatpage(
+                              name: 'Bridal Makeup',
+                            ),
+                          ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -151,7 +160,9 @@ class _EntrepbridmakeState extends State<Entrepbridmake> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -166,5 +177,14 @@ class _EntrepbridmakeState extends State<Entrepbridmake> {
         ),
       ),
     );
+  }
+
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

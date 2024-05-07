@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:main_project/USER/formscreen/otppage/signupotp.dart';
-import 'package:random_string/random_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class signup extends StatefulWidget {
   const signup({super.key});
@@ -26,6 +26,7 @@ class _LogaState extends State<signup> {
   String? _password;
   String? _confirmPassword;
   String email = " ", password = "";
+  final _auth=FirebaseAuth.instance; 
 
    bool isloading=false;
 
@@ -36,6 +37,7 @@ class _LogaState extends State<signup> {
   TextEditingController confirmcontroller = TextEditingController();
 
   Signup() async {
+    SharedPreferences preferences= await SharedPreferences.getInstance();
     if (password != null) {
       try {
         setState(() {
@@ -43,6 +45,7 @@ class _LogaState extends State<signup> {
         });
         UserCredential credential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
+            preferences.setString('isloggin', credential.user!.uid);
         // Ensure that 'context' is available where this code is executed
         Navigator.pushReplacement(
           context,
@@ -58,15 +61,16 @@ class _LogaState extends State<signup> {
         //       length, (_) => charset[random.nextInt(charset.length)]).join();
         // }
 
-        String registered_user_id = randomString(10);
+       // String registered_user_id = randomString(10);
+       String uid=_auth.currentUser!.uid;
         Map<String, dynamic> registereinfomap = {
           "User_Name": usernamecontroller.text,
           "Email": emailcontroller.text,
           "Password": '',
-          "Id": registered_user_id,
+          "Id": uid,
           "Mobile_No": mobilecontroller.text,
         };
-        await addfirebase(registereinfomap, registered_user_id);
+        await addfirebase(registereinfomap, uid);
         const SnackBar(content: Text("Details added to firebase Succesfully"));
         setState(() {
           isloading=false;

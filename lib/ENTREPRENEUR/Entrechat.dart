@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EntreChatpage extends StatefulWidget {
-  const EntreChatpage({super.key});
+  String name;
+  EntreChatpage({super.key, required this.name});
 
   @override
   State<EntreChatpage> createState() => _EntreChatpageState();
@@ -11,11 +12,44 @@ class _EntreChatpageState extends State<EntreChatpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.grey.shade50,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Type your message...',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: Colors.green,
+                child: IconButton(
+                  onPressed: () {
+                    // Handle send message action
+                  },
+                  icon: Icon(Icons.send),
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       appBar: AppBar(
-        // title: const Text(
-        //   'SUMANGALI Auditorium',
-        //   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
-        // ),
+        title: Text(
+          widget.name,
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+        ),
         backgroundColor: Colors.transparent,
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),

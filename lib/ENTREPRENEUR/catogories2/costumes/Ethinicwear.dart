@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepethinic extends StatefulWidget {
   const Entrepethinic({super.key});
@@ -121,7 +123,11 @@ class _EntrepethinicState extends State<Entrepethinic> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                                     Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => EntreChatpage(name: 'Ethinic wear',),
+                ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -148,7 +154,9 @@ class _EntrepethinicState extends State<Entrepethinic> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                                                       _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -163,5 +171,13 @@ class _EntrepethinicState extends State<Entrepethinic> {
         ),
       ),
     );
+  }
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

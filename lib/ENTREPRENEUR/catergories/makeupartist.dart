@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/makeupartist/BridalMakeup.dart';
 import 'package:main_project/ENTREPRENEUR/catogories2/makeupartist/GroomMakeup.dart';
 import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
@@ -56,13 +55,13 @@ class _EntremkaeupspageState extends State<Entremkaeupspage> {
           ),
           color: Colors.black,
         ),
-         actions: [
-          IconButton(onPressed: () {
-               Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => EntreChatpage(),
-                  ));
-          }, icon: const Icon(Icons.chat_outlined))
-        ]
+        //  actions: [
+        //   IconButton(onPressed: () {
+        //        Navigator.of(context).push(MaterialPageRoute(
+        //             builder: (context) => EntreChatpage(),
+        //           ));
+        //   }, icon: const Icon(Icons.chat_outlined))
+        // ]
         
       ),
       backgroundColor: Color(0xffFCC5D5),

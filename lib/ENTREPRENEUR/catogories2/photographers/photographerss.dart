@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Entrepphotographers extends StatefulWidget {
   const Entrepphotographers({super.key});
@@ -11,7 +13,7 @@ class _EntrepphotographersState extends State<Entrepphotographers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
+      appBar: AppBar(
         title: const Text(
           'Photographers',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -34,7 +36,6 @@ class _EntrepphotographersState extends State<Entrepphotographers> {
           ),
           color: Colors.black,
         ),
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -83,22 +84,24 @@ class _EntrepphotographersState extends State<Entrepphotographers> {
                             onPressed: () {}, icon: const Icon(Icons.favorite))
                       ],
                     ),
-          
-     
                     const Text(" photo+video"),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "8000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        SizedBox(width: 6,),
-                          Text("per day")
+                        SizedBox(
+                          width: 6,
+                        ),
+                        Text("per day")
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -124,7 +127,13 @@ class _EntrepphotographersState extends State<Entrepphotographers> {
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EntreChatpage(
+                              name: 'Photographers',
+                            ),
+                          ));
+                        },
                         child: const Row(
                           children: [
                             Icon(Icons.message),
@@ -151,7 +160,9 @@ class _EntrepphotographersState extends State<Entrepphotographers> {
                           const BorderSide(color: Color(0xff63C336)),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _makePhoneCall('7025053483');
+                      },
                       child: const Row(
                         children: [
                           Icon(Icons.call),
@@ -166,5 +177,13 @@ class _EntrepphotographersState extends State<Entrepphotographers> {
         ),
       ),
     );
+  }
+  void _makePhoneCall(String phoneNumber) async {
+    final url = 'tel:$phoneNumber';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

@@ -109,24 +109,25 @@ class _LogaState extends State<Donatedress> {
                       width: 150,
                       decoration: BoxDecoration(
                         border: Border.all(),
-                        borderRadius: BorderRadius.circular(15), // Adjust the radius as needed
+                        borderRadius: BorderRadius.circular(
+                            15), // Adjust the radius as needed
                       ),
                       child: _imageFile != null
                           ? ClipRRect(
-                        borderRadius: BorderRadius.circular(15), // Adjust the radius as needed
-                        child: Image.file(
-                          _imageFile!,
-                          fit: BoxFit.fill,
-                        ),
-                      )
+                              borderRadius: BorderRadius.circular(
+                                  15), // Adjust the radius as needed
+                              child: Image.file(
+                                _imageFile!,
+                                fit: BoxFit.fill,
+                              ),
+                            )
                           : Icon(
-                        Icons.add,
-                        size: 40,
-                      ),
+                              Icons.add,
+                              size: 40,
+                            ),
                     ),
                   ),
                 ),
-
                 SizedBox(
                   height: 10,
                 ),
