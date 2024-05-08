@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
 
 class Complaint extends StatefulWidget {
   const Complaint({super.key});

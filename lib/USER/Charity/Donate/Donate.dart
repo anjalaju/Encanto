@@ -5,7 +5,6 @@ import 'package:main_project/USER/Charity/Donate/Donateaccessories.dart';
 import 'package:main_project/USER/Charity/Donate/Donatedecoration.dart';
 import 'package:main_project/USER/Charity/Donate/Donatedress.dart';
 import 'package:main_project/USER/Charity/Donate/Donatejewellery.dart';
-import 'package:main_project/USER/chat.dart';
 import 'package:main_project/USER/homepage/bottomnav.dart';
 
 class Donate extends StatefulWidget {

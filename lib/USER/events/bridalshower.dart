@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
 import 'package:main_project/USER/catergories/bridalwearaccess.dart';
 import 'package:main_project/USER/catergories/cakes.dart';
 import 'package:main_project/USER/catergories/cardmakers.dart';
@@ -14,7 +13,6 @@ import 'package:main_project/USER/catergories/planninganddecor.dart';
 import 'package:main_project/USER/catergories/preweddingshot.dart';
 import 'package:main_project/USER/catergories/transportations.dart';
 import 'package:main_project/USER/catergories/venues.dart';
-import 'package:main_project/USER/chat.dart';
 import 'package:main_project/USER/events/bridalshowerlist.dart';
 import 'package:main_project/USER/homepage/bottomnav.dart';
 

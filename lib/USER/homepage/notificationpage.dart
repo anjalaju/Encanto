@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
-
-
 
 class notificationpage extends StatefulWidget {
   const notificationpage({super.key});
@@ -12,11 +8,11 @@ class notificationpage extends StatefulWidget {
 }
 
 class _notificationpageState extends State<notificationpage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           'Notification',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -30,15 +26,15 @@ class _notificationpageState extends State<notificationpage> {
             height: 1,
           ),
         ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        //   icon: const Icon(
+        //     Icons.arrow_back_ios_new,
+        //   ),
+        //   color: Colors.black,
+        // ),
         // actions: [
         //   IconButton(onPressed: () {
         //                   Navigator.push(context,
@@ -50,7 +46,6 @@ class _notificationpageState extends State<notificationpage> {
         //         ));
         //   }, icon: const Icon(Icons.chat_outlined))
         // ],
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -83,7 +78,7 @@ class _notificationpageState extends State<notificationpage> {
                 width: 373,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                     color: const Color.fromARGB(255, 199, 194, 179),
+                  color: const Color.fromARGB(255, 199, 194, 179),
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
@@ -97,7 +92,6 @@ class _notificationpageState extends State<notificationpage> {
           ),
         ),
       ),
-    
     );
   }
 }

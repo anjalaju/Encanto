@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/ENTREPRENEUR/Entrechat.dart';
 
 class Entrenotificationpage extends StatefulWidget {
   const Entrenotificationpage({super.key});

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
 
 import 'package:main_project/USER/events/baby%20shower.dart';
 import 'package:main_project/USER/events/birthday.dart';

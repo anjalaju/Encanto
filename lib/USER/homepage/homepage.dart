@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,11 +12,10 @@ import 'package:main_project/USER/Drawer/Revieww.dart';
 import 'package:main_project/USER/Drawer/Settings.dart';
 import 'package:main_project/USER/Drawer/about.dart';
 import 'package:main_project/USER/Drawer/complaint.dart';
-import 'package:main_project/USER/chat.dart';
 import 'package:main_project/USER/events/eventpage.dart';
 import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/formscreen/loginpage.dart';
 import 'package:main_project/USER/formscreen/welcome.dart';
+import 'package:random_string/random_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class homepage extends StatefulWidget {
@@ -68,29 +67,37 @@ class _homepageState extends State<homepage> {
                           height: 130,
                           width: 150,
                           decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.grey
-                              // border: Border.all(),
-                              // borderRadius: BorderRadius.circular(
-                              //     15), // Adjust the radius as needed
-                              ),
-                          child: _imageFile != null
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.file(
-                                    _imageFile!,
-                                    fit: BoxFit.fill,
+                            shape: BoxShape.circle,
+                            color: Colors.grey,
+                          ),
+                          child: Stack(
+                            children: [
+                              if (_imageFile != null)
+                                Container(
+                                  height: 130,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      image: FileImage(_imageFile!),
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                )
-                              : Icon(
-                                  Icons.add,
-                                  size: 40,
                                 ),
+                              Positioned(
+                                right: 0,
+                                bottom: 30,
+                                child: Icon(Icons.sync, color: Colors.white),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
+
                     Center(
                         child: Text(
-                      '${_auth.currentUser!.email}',
+                      '${data['User_Name']}',
                       style: const TextStyle(
                           fontSize: 24,
                           fontStyle: FontStyle.italic,
@@ -516,7 +523,23 @@ class _homepageState extends State<homepage> {
                   style: TextStyle(color: Colors.indigo),
                 ),
                 onTap: () {
-                  _pickImage(ImageSource.camera);
+                  _pickImage(ImageSource.camera).then((value) async {
+                    SettableMetadata metadata =
+                        SettableMetadata(contentType: 'image/jpeg');
+                    final currenttime = TimeOfDay.now();
+                    UploadTask uploadTask = FirebaseStorage.instance
+                        .ref()
+                        .child('shoapimage/shop$currenttime')
+                        .putFile(_imageFile!, metadata);
+                    TaskSnapshot snapshot = await uploadTask;
+                    await snapshot.ref.getDownloadURL().then((url) {
+                      String id = randomString(10);
+                      FirebaseFirestore.instance
+                          .collection('image')
+                          .doc(id)
+                          .set({'image': url, id: id});
+                    });
+                  });
                   Navigator.pop(context);
                 },
               ),
@@ -527,7 +550,23 @@ class _homepageState extends State<homepage> {
                   style: TextStyle(color: Colors.indigo),
                 ),
                 onTap: () {
-                  _pickImage(ImageSource.gallery);
+                  _pickImage(ImageSource.gallery).then((value) async {
+                    SettableMetadata metadata =
+                        SettableMetadata(contentType: 'image/jpeg');
+                    final currenttime = TimeOfDay.now();
+                    UploadTask uploadTask = FirebaseStorage.instance
+                        .ref()
+                        .child('shoapimage/shop$currenttime')
+                        .putFile(_imageFile!, metadata);
+                    TaskSnapshot snapshot = await uploadTask;
+                    await snapshot.ref.getDownloadURL().then((url) {
+                      String id = randomString(10);
+                      FirebaseFirestore.instance
+                          .collection('image')
+                          .doc(id)
+                          .set({'image': url, id: id});
+                    });
+                  });
                   Navigator.pop(context);
                 },
               ),

@@ -157,9 +157,6 @@ class _SplashState extends State<Splash> {
   }
 }
 
-
-
-
 // SplashScreenView(
 //       navigateRoute: Swipee(),
 //       duration: 4000,

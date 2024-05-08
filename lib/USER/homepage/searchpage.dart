@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
 
 class Searchpage extends StatefulWidget {
   const Searchpage({super.key});
@@ -10,11 +8,12 @@ class Searchpage extends StatefulWidget {
 }
 
 class _SearchpageState extends State<Searchpage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-  appBar: AppBar(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+
         title: const Text(
           'Search',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -28,15 +27,15 @@ class _SearchpageState extends State<Searchpage> {
             height: 1,
           ),
         ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        //   icon: const Icon(
+        //     Icons.arrow_back_ios_new,
+        //   ),
+        //   color: Colors.black,
+        // ),
         // actions: [
         //   IconButton(onPressed: () {
         //                   Navigator.push(context,
@@ -48,38 +47,30 @@ class _SearchpageState extends State<Searchpage> {
         //         ));
         //   }, icon: const Icon(Icons.chat_outlined))
         // ],
-        
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
-          
-          
             children: [
               SizedBox(
                 height: 80,
               ),
-          
-          
-               TextField(
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ), 
-                          hintText: ("Search by location"),
-                          prefixIcon: const Icon(Icons.search),
-                          suffixIcon: Icon(Icons.location_on)),
-                          
+              TextField(
+                decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
+                    hintText: ("Search by location"),
+                    prefixIcon: const Icon(Icons.search),
+                    suffixIcon: Icon(Icons.location_on)),
+              ),
             ],
           ),
         ),
       ),
-     
-      
     );
   }
 }

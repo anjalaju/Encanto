@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:main_project/USER/Charity/Donate/Donate.dart';
 import 'package:main_project/USER/Charity/Receive/recieve.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
 import 'package:main_project/USER/homepage/bottomnav.dart';
 
 class Charityhomepage extends StatefulWidget {

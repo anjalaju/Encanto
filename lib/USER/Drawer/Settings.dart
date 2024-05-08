@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:main_project/USER/Drawer/settingchangepass.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
 import 'package:main_project/USER/formscreen/welcome.dart';
 
 class Settingpage extends StatefulWidget {

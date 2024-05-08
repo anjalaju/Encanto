@@ -3,7 +3,6 @@ import 'package:main_project/USER/Charity/Receive/Decoration.dart';
 import 'package:main_project/USER/Charity/Receive/Receidress.dart';
 import 'package:main_project/USER/Charity/Receive/jewellery.dart';
 import 'package:main_project/USER/Charity/Receive/otheracc.dart';
-import 'package:main_project/USER/chat.dart';
 import 'package:main_project/USER/homepage/bottomnav.dart';
 
 class Receive extends StatefulWidget {

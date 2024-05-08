@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
 
 class Aboutus extends StatefulWidget {
   const Aboutus({super.key});

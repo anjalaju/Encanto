@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
-import 'package:main_project/USER/chat.dart';
 
 class offerpage extends StatefulWidget {
   const offerpage({super.key});
@@ -14,6 +12,8 @@ class _offerpageState extends State<offerpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+
         title: const Text(
           'Offer',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
@@ -27,15 +27,15 @@ class _offerpageState extends State<offerpage> {
             height: 1,
           ),
         ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        //   icon: const Icon(
+        //     Icons.arrow_back_ios_new,
+        //   ),
+        //   color: Colors.black,
+        // ),
         // actions: [
         //   IconButton(
         //       onPressed: () {
@@ -50,7 +50,7 @@ class _offerpageState extends State<offerpage> {
         //         ));
         //       },
         //       icon: const Icon(Icons.chat_outlined))
-              
+
         // ],
       ),
       body: SingleChildScrollView(

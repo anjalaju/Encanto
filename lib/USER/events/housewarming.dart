@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
 import 'package:main_project/USER/catergories/cakes.dart';
 import 'package:main_project/USER/catergories/cardmakers.dart';
 import 'package:main_project/USER/catergories/catering.dart';
@@ -7,7 +6,6 @@ import 'package:main_project/USER/catergories/gifts.dart';
 import 'package:main_project/USER/catergories/musicanddancr.dart';
 import 'package:main_project/USER/catergories/photographers.dart';
 import 'package:main_project/USER/catergories/planninganddecor.dart';
-import 'package:main_project/USER/chat.dart';
 import 'package:main_project/USER/events/housewarminglist.dart';
 import 'package:main_project/USER/homepage/bottomnav.dart';
 
