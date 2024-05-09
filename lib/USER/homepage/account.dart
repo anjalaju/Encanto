@@ -10,16 +10,14 @@ class Accountpage extends StatefulWidget {
 }
 
 class _AccountpageState extends State<Accountpage> {
-   final _firestore = FirebaseFirestore.instance;
+  final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
   TextEditingController mobilecontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
-    String id=_auth.currentUser!.uid;
+    String id = _auth.currentUser!.uid;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -70,24 +68,43 @@ class _AccountpageState extends State<Accountpage> {
               const SizedBox(
                 height: 10,
               ),
-               Padding(
+              Padding(
                 padding: EdgeInsets.all(10.0),
-                child: StreamBuilder(stream: _firestore.collection('firebase').doc(id).snapshots(), 
-                builder: (context,snapshot)
-                {
-                  DocumentSnapshot data=snapshot.data!;
-                  String imageUrl=data['image'];
-                  return CircleAvatar(
-                  backgroundColor: Colors.black,
-                  radius: 91,
-                  child: CircleAvatar(
-                    radius: 87,
-                    backgroundImage: NetworkImage(imageUrl),
-                  ),
-                );
-                }
+                child:
+                 StreamBuilder(
+                  stream: _firestore.collection('firebase').doc(id).snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+                    if (!snapshot.hasData || snapshot.data == null) {
+                      print('No data available');
+                    }
+
+                    DocumentSnapshot<Map<String, dynamic>> data =
+                        snapshot.data!;
+                    if (!data.exists) {
+                     print('Document does not exist');
+                    }
+
+                    // Check if 'image' field exists and is not null in the document
+                    if (!data.data()!.containsKey('image') ||
+                        data.data()!['image'] == null) {
+                      print('Image URL not found');
+                    }
+
+                    String imageUrl = data.data()!['image'];
+
+                    return CircleAvatar(
+                      backgroundColor: Colors.black,
+                      radius: 91,
+                      child: CircleAvatar(
+                        radius: 87,
+                        backgroundImage: NetworkImage(imageUrl),
+                      ),
+                    );
+                  },
                 ),
-                
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -99,42 +116,42 @@ class _AccountpageState extends State<Accountpage> {
                   //     fontWeight: FontWeight.bold,
                   //   ),
                   // ),
-                              StreamBuilder(
-  stream: _firestore
-      .collection("firebase")
-      .where("Id", isEqualTo: _auth.currentUser!.uid)
-      .snapshots(),
-  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    if (snapshot.hasData) {
-      final List<DocumentSnapshot> documents = snapshot.data!.docs;
-      if (documents.isNotEmpty) {
-        final username = documents[0].get("User_Name");
-        if (username != null) {
-          return Text(
-            "$username",
-            style: TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold,
+                  StreamBuilder(
+                    stream: _firestore
+                        .collection("firebase")
+                        .where("Id", isEqualTo: _auth.currentUser!.uid)
+                        .snapshots(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasData) {
+                        final List<DocumentSnapshot> documents =
+                            snapshot.data!.docs;
+                        if (documents.isNotEmpty) {
+                          final username = documents[0].get("User_Name");
+                          if (username != null) {
+                            return Text(
+                              "$username",
+                              style: TextStyle(
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            );
+                          } else {
+                            // Handle the case where username is null
+                            return Text(
+                              ",",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white,
+                              ),
+                            );
+                          }
+                        }
+                      }
+                      return CircularProgressIndicator(); // Placeholder for loading state
+                    },
                   ),
-            
-          );
-        } else {
-          // Handle the case where username is null
-          return Text(
-            ",",
-            style: TextStyle(
-              fontSize: 24,
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w900,
-              color: Colors.white,
-            ),
-          );
-        }
-      }
-    }
-    return CircularProgressIndicator(); // Placeholder for loading state
-  },
-),
                   Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 1.5,
@@ -157,60 +174,60 @@ class _AccountpageState extends State<Accountpage> {
                 ],
               ),
               const SizedBox(height: 40),
-               Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Mobile number"),
                   SizedBox(height: 7),
-                StreamBuilder(
-  stream: _firestore
-      .collection("firebase")
-      .where("Id", isEqualTo: _auth.currentUser!.uid)
-      .snapshots(),
-  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    if (snapshot.hasData) {
-      final List<DocumentSnapshot> documents = snapshot.data!.docs;
-      if (documents.isNotEmpty) {
-        final Mobile_No = documents[0].get("Mobile_No");
-        mobilecontroller.text = Mobile_No ?? ""; 
-      }
-    }
-    return TextField(
-      controller: mobilecontroller,
-      readOnly: true,
-      decoration: InputDecoration(
-       
-        hintStyle: TextStyle(fontWeight: FontWeight.bold),
-      ),
-    );
-  },
-),
+                  StreamBuilder(
+                    stream: _firestore
+                        .collection("firebase")
+                        .where("Id", isEqualTo: _auth.currentUser!.uid)
+                        .snapshots(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasData) {
+                        final List<DocumentSnapshot> documents =
+                            snapshot.data!.docs;
+                        if (documents.isNotEmpty) {
+                          final Mobile_No = documents[0].get("Mobile_No");
+                          mobilecontroller.text = Mobile_No ?? "";
+                        }
+                      }
+                      return TextField(
+                        controller: mobilecontroller,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    },
+                  ),
                   SizedBox(height: 10),
                   Text("Email ID"),
                   SizedBox(height: 7),
                   StreamBuilder(
-  stream: _firestore
-      .collection("firebase")
-      .where("Id", isEqualTo: _auth.currentUser!.uid)
-      .snapshots(),
-  builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    if (snapshot.hasData) {
-      final List<DocumentSnapshot> documents = snapshot.data!.docs;
-      if (documents.isNotEmpty) {
-        final Email = documents[0].get("Email");
-        emailcontroller.text = Email ?? ""; 
-      }
-    }
-    return TextField(
-      controller: emailcontroller,
-      readOnly: true,
-      decoration: InputDecoration(
-       
-        hintStyle: TextStyle(fontWeight: FontWeight.bold),
-      ),
-    );
-  },
-),
+                    stream: _firestore
+                        .collection("firebase")
+                        .where("Id", isEqualTo: _auth.currentUser!.uid)
+                        .snapshots(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasData) {
+                        final List<DocumentSnapshot> documents =
+                            snapshot.data!.docs;
+                        if (documents.isNotEmpty) {
+                          final Email = documents[0].get("Email");
+                          emailcontroller.text = Email ?? "";
+                        }
+                      }
+                      return TextField(
+                        controller: emailcontroller,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    },
+                  ),
                   SizedBox(height: 10),
                   Text("Place"),
                   SizedBox(height: 7),

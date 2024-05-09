@@ -28,7 +28,7 @@ class _homepageState extends State<homepage> {
 
   @override
   Widget build(BuildContext context) {
-    String id=_auth.currentUser!.uid;
+    String id = _auth.currentUser!.uid;
     print("${_auth.currentUser!.uid}..........");
     return Scaffold(
       drawer: Drawer(
@@ -41,8 +41,6 @@ class _homepageState extends State<homepage> {
                     child: CircularProgressIndicator(),
                   ); // Or any other loading indicator
                 }
-
-                final data = snapshot.data!.docs.first;
 
                 return ListView(
                   padding: EdgeInsets.zero,
@@ -69,43 +67,44 @@ class _homepageState extends State<homepage> {
                             shape: BoxShape.circle,
                             color: Colors.grey,
                           ),
-                          child:StreamBuilder(stream: _firestore
-      .collection("firebase")
-      .doc(id)
-      .snapshots(), builder: (context,snapshot)
-      {
-        DocumentSnapshot data=snapshot.data!;
-        String imageUrl=data['image'];
-        return  Stack(
-                            children: [
-                              if (_imageFile != null)
-                             
-                                Container(
-                                  height: 130,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image: _imageFile!=null
-                                      ?FileImage(_imageFile!)
-                                      :AssetImage(imageUrl)
-                                      as ImageProvider<Object>,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    
-                                  ),
+                          child: StreamBuilder(
+                            stream: _firestore
+                                .collection('firebase')
+                                .doc(id)
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              }
+                              if (!snapshot.hasData || snapshot.data == null) {
+                                print('No data available');
+                              }
+
+                              DocumentSnapshot<Map<String, dynamic>> data =
+                                  snapshot.data!;
+                              if (!data.exists) {
+                                print('Document does not exist');
+                              }
+
+                              // Check if 'image' field exists and is not null in the document
+                              if (!data.data()!.containsKey('image') ||
+                                  data.data()!['image'] == null) {
+                                print('Image URL not found');
+                              }
+
+                              String imageUrl = data.data()!['image'];
+
+                              return CircleAvatar(
+                                backgroundColor: Colors.black,
+                                radius: 91,
+                                child: CircleAvatar(
+                                  radius: 87,
+                                  backgroundImage: NetworkImage(imageUrl),
                                 ),
-                              Positioned(
-                                right: 0,
-                                bottom: 30,
-                                child: Icon(Icons.sync, color: Colors.white),
-                              ),
-                            ],
-                          );
-      }
-      
-      )
-                          
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),
@@ -594,7 +593,7 @@ class _homepageState extends State<homepage> {
                       FirebaseFirestore.instance
                           .collection('firebase')
                           .doc(id)
-                          .update({'image':url});
+                          .update({'image': url});
                     });
                   });
                   Navigator.pop(context);
@@ -621,7 +620,7 @@ class _homepageState extends State<homepage> {
                       FirebaseFirestore.instance
                           .collection('firebase')
                           .doc(id)
-                          .update({'image':url});
+                          .update({'image': url});
                     });
                   });
                   Navigator.pop(context);
