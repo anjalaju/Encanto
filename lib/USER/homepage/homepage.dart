@@ -3,9 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:main_project/USER/Charity/Homepage.dart';
 import 'package:main_project/USER/Drawer/Revieww.dart';
@@ -15,7 +13,6 @@ import 'package:main_project/USER/Drawer/complaint.dart';
 import 'package:main_project/USER/events/eventpage.dart';
 import 'package:main_project/USER/Drawer/shotlist.dart';
 import 'package:main_project/USER/formscreen/welcome.dart';
-import 'package:random_string/random_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class homepage extends StatefulWidget {
@@ -28,9 +25,11 @@ class homepage extends StatefulWidget {
 class _homepageState extends State<homepage> {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
-    String id = _auth.currentUser!.uid;
+    String id=_auth.currentUser!.uid;
+    print("${_auth.currentUser!.uid}..........");
     return Scaffold(
       drawer: Drawer(
           backgroundColor: const Color(0xff6C6974),
@@ -70,18 +69,30 @@ class _homepageState extends State<homepage> {
                             shape: BoxShape.circle,
                             color: Colors.grey,
                           ),
-                          child: Stack(
+                          child:StreamBuilder(stream: _firestore
+      .collection("firebase")
+      .doc(id)
+      .snapshots(), builder: (context,snapshot)
+      {
+        DocumentSnapshot data=snapshot.data!;
+        String imageUrl=data['image'];
+        return  Stack(
                             children: [
                               if (_imageFile != null)
+                             
                                 Container(
                                   height: 130,
                                   width: 150,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
-                                      image: FileImage(_imageFile!),
+                                      image: _imageFile!=null
+                                      ?FileImage(_imageFile!)
+                                      :AssetImage(imageUrl)
+                                      as ImageProvider<Object>,
                                       fit: BoxFit.cover,
                                     ),
+                                    
                                   ),
                                 ),
                               Positioned(
@@ -90,20 +101,66 @@ class _homepageState extends State<homepage> {
                                 child: Icon(Icons.sync, color: Colors.white),
                               ),
                             ],
-                          ),
+                          );
+      }
+      
+      )
+                          
                         ),
                       ),
                     ),
 
-                    Center(
-                        child: Text(
-                      '${data['User_Name']}',
-                      style: const TextStyle(
-                          fontSize: 24,
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white),
-                    )),
+                    // Center(
+                    //     child: Text(
+                    //   '${data['User_Name']}',
+                    //   style: const TextStyle(
+                    //       fontSize: 24,
+                    //       fontStyle: FontStyle.italic,
+                    //       fontWeight: FontWeight.w900,
+                    //       color: Colors.white),
+                    // )),
+                    StreamBuilder(
+                      stream: _firestore
+                          .collection("firebase")
+                          .where("Id", isEqualTo: _auth.currentUser!.uid)
+                          .snapshots(),
+                      builder:
+                          (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasData) {
+                          final List<DocumentSnapshot> documents =
+                              snapshot.data!.docs;
+                          if (documents.isNotEmpty) {
+                            final username = documents[0].get("User_Name");
+                            if (username != null) {
+                              return Center(
+                                child: Text(
+                                  "$username",
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontStyle: FontStyle.italic,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              );
+                            } else {
+                              // Handle the case where username is null
+                              return Text(
+                                ",",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white,
+                                ),
+                              );
+                            }
+                          }
+                        }
+                        return CircularProgressIndicator(); // Placeholder for loading state
+                      },
+                    ),
+
                     const SizedBox(
                       height: 30,
                     ),
@@ -297,27 +354,42 @@ class _homepageState extends State<homepage> {
                                           ))),
                                   ElevatedButton(
                                       onPressed: () async {
+                                        // SharedPreferences preferences =
+                                        //     await SharedPreferences
+                                        //         .getInstance();
+
+                                        // // _auth.signOut().then((value) =>Navigator.of(context).push(MaterialPageRoute(
+                                        // //   builder: (context) => const loginpage(),
+                                        // // )) );
+
+                                        // await _auth.signOut().then(
+                                        //       (value) =>
+                                        //           Navigator.pushReplacement(
+                                        //         context,
+                                        //         MaterialPageRoute(
+                                        //           builder: (context) =>
+                                        //               welcome(),
+                                        //         ),
+                                        //       ),
+                                        //     );
+                                        // log('signout succes');
+                                        // preferences.clear();
+                                        // log('logout success');
                                         SharedPreferences preferences =
                                             await SharedPreferences
                                                 .getInstance();
-
-                                        // _auth.signOut().then((value) =>Navigator.of(context).push(MaterialPageRoute(
-                                        //   builder: (context) => const loginpage(),
-                                        // )) );
-
-                                        await _auth.signOut().then(
-                                              (value) =>
-                                                  Navigator.pushReplacement(
+                                        _auth.signOut().then((value) =>
+                                            Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      welcome(),
-                                                ),
-                                              ),
-                                            );
+                                                    builder: (context) =>
+                                                        welcome()))); // Use pushReplacement here
                                         log('signout succes');
                                         preferences.clear();
+                                        // log('logout successfully' as num);
+
                                         log('logout success');
+                                        // Navigator.pop(context);
                                       },
                                       child: const Text(
                                         "Yes",
@@ -357,21 +429,6 @@ class _homepageState extends State<homepage> {
             height: 1,
           ),
         ),
-        // actions: [
-        //   IconButton(
-        //       onPressed: () {
-        //         Navigator.push(context,
-        //             MaterialPageRoute(builder: (context) => const Shortlist()));
-        //       },
-        //       icon: const Icon(Icons.favorite)),
-        //   IconButton(
-        //       onPressed: () {
-        //         Navigator.of(context).push(MaterialPageRoute(
-        //           builder: (context) => Chatpage(),
-        //         ));
-        //       },
-        //       icon: const Icon(Icons.chat_outlined))
-        // ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -533,11 +590,11 @@ class _homepageState extends State<homepage> {
                         .putFile(_imageFile!, metadata);
                     TaskSnapshot snapshot = await uploadTask;
                     await snapshot.ref.getDownloadURL().then((url) {
-                      String id = randomString(10);
+                      String id = _auth.currentUser!.uid;
                       FirebaseFirestore.instance
-                          .collection('image')
+                          .collection('firebase')
                           .doc(id)
-                          .set({'image': url, id: id});
+                          .update({'image':url});
                     });
                   });
                   Navigator.pop(context);
@@ -560,11 +617,11 @@ class _homepageState extends State<homepage> {
                         .putFile(_imageFile!, metadata);
                     TaskSnapshot snapshot = await uploadTask;
                     await snapshot.ref.getDownloadURL().then((url) {
-                      String id = randomString(10);
+                      String id = _auth.currentUser!.uid;
                       FirebaseFirestore.instance
-                          .collection('image')
+                          .collection('firebase')
                           .doc(id)
-                          .set({'image': url, id: id});
+                          .update({'image':url});
                     });
                   });
                   Navigator.pop(context);

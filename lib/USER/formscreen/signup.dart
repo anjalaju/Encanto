@@ -69,6 +69,7 @@ class _LogaState extends State<signup> {
           "Password": '',
           "Id": uid,
           "Mobile_No": mobilecontroller.text,
+          "image":'',
         };
         await addfirebase(registereinfomap, uid);
         const SnackBar(content: Text("Details added to firebase Succesfully"));

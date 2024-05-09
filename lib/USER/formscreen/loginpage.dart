@@ -31,7 +31,7 @@ class _LogaState extends State<loginpage> {
         });
         UserCredential credential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
-
+        print('${credential.user!.uid}***************');
         preferences.setString('isloggin', credential.user!.uid);
 
         ScaffoldMessenger.of(context)
