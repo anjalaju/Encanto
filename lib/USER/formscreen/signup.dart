@@ -66,10 +66,11 @@ class _LogaState extends State<signup> {
         Map<String, dynamic> registereinfomap = {
           "User_Name": usernamecontroller.text,
           "Email": emailcontroller.text,
-          "Password": '',
+          "Age": '',
+          "Place": '',
           "Id": uid,
           "Mobile_No": mobilecontroller.text,
-          "image":'',
+          "Image":'',
         };
         await addfirebase(registereinfomap, uid);
         const SnackBar(content: Text("Details added to firebase Succesfully"));

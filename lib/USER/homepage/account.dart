@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:main_project/USER/homepage/EDIT/age.dart';
+import 'package:main_project/USER/homepage/EDIT/editmobileno.dart';
+import 'package:main_project/USER/homepage/EDIT/place.dart';
+import 'package:main_project/USER/homepage/EDIT/usernameedit.dart';
 
 class Accountpage extends StatefulWidget {
   const Accountpage({super.key});
@@ -12,8 +16,6 @@ class Accountpage extends StatefulWidget {
 class _AccountpageState extends State<Accountpage> {
   final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
-  TextEditingController mobilecontroller = TextEditingController();
-  TextEditingController emailcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -64,18 +66,18 @@ class _AccountpageState extends State<Accountpage> {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
                 height: 10,
               ),
               Padding(
-                padding: EdgeInsets.all(10.0),
-                child:
-                 StreamBuilder(
+                padding: const EdgeInsets.all(10.0),
+                child: StreamBuilder(
                   stream: _firestore.collection('firebase').doc(id).snapshots(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
+                      return const CircularProgressIndicator();
                     }
                     if (!snapshot.hasData || snapshot.data == null) {
                       print('No data available');
@@ -84,23 +86,25 @@ class _AccountpageState extends State<Accountpage> {
                     DocumentSnapshot<Map<String, dynamic>> data =
                         snapshot.data!;
                     if (!data.exists) {
-                     print('Document does not exist');
+                      print('Document does not exist');
                     }
 
                     // Check if 'image' field exists and is not null in the document
-                    if (!data.data()!.containsKey('image') ||
-                        data.data()!['image'] == null) {
+                    if (!data.data()!.containsKey('Image') ||
+                        data.data()!['Image'] == null) {
                       print('Image URL not found');
                     }
 
-                    String imageUrl = data.data()!['image'];
+                    String imageUrl = data.data()!['Image'];
 
-                    return CircleAvatar(
-                      backgroundColor: Colors.black,
-                      radius: 91,
+                    return Center(
                       child: CircleAvatar(
-                        radius: 87,
-                        backgroundImage: NetworkImage(imageUrl),
+                        backgroundColor: Colors.black,
+                        radius: 91,
+                        child: CircleAvatar(
+                          radius: 87,
+                          backgroundImage: NetworkImage(imageUrl),
+                        ),
                       ),
                     );
                   },
@@ -130,14 +134,14 @@ class _AccountpageState extends State<Accountpage> {
                           if (username != null) {
                             return Text(
                               "$username",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold,
                               ),
                             );
                           } else {
                             // Handle the case where username is null
-                            return Text(
+                            return const Text(
                               ",",
                               style: TextStyle(
                                 fontSize: 24,
@@ -149,36 +153,57 @@ class _AccountpageState extends State<Accountpage> {
                           }
                         }
                       }
-                      return CircularProgressIndicator(); // Placeholder for loading state
+                      return const CircularProgressIndicator(); // Placeholder for loading state
                     },
                   ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 1.5,
-                      horizontal: 5,
-                    ),
-                    margin: const EdgeInsets.only(left: 20),
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1.5),
-                        borderRadius: BorderRadius.circular(6)),
-                    child: const Column(
-                      children: [
-                        Text("Edit"),
-                        Icon(
-                          Icons.edit,
-                          size: 15,
-                        )
-                      ],
+                  InkWell(onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const NameEditPage()));
+                  },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 1.5,
+                        horizontal: 5,
+                      ),
+                      margin: const EdgeInsets.only(left: 20),
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 1.5),
+                          borderRadius: BorderRadius.circular(6)),
+                      child: const Column(
+                        children: [
+                          Text("Edit"),
+                          Icon(
+                            Icons.edit,
+                            size: 15,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              StreamBuilder(
+                stream: _firestore
+                    .collection("firebase")
+                    .where("Id", isEqualTo: _auth.currentUser!.uid)
+                    .snapshots(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasData) {
+                    final List<DocumentSnapshot> documents =
+                        snapshot.data!.docs;
+                    if (documents.isNotEmpty) {
+                      final email = documents[0].get("Email");
+                      return Center(child: Text("Email: ${email ?? ""}"));
+                    }
+                  }
+                  return const CircularProgressIndicator();
+                },
+              ),
+              const SizedBox(height: 20),
+              const Text("Mobile number",style: TextStyle(fontWeight: FontWeight.bold),),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Mobile number"),
-                  SizedBox(height: 7),
                   StreamBuilder(
                     stream: _firestore
                         .collection("firebase")
@@ -189,64 +214,112 @@ class _AccountpageState extends State<Accountpage> {
                         final List<DocumentSnapshot> documents =
                             snapshot.data!.docs;
                         if (documents.isNotEmpty) {
-                          final Mobile_No = documents[0].get("Mobile_No");
-                          mobilecontroller.text = Mobile_No ?? "";
+                          final mobile = documents[0].get("Mobile_No");
+                          return Text(mobile ?? "");
                         }
                       }
-                      return TextField(
-                        controller: mobilecontroller,
-                        readOnly: true,
-                        decoration: InputDecoration(
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      );
+                      return const CircularProgressIndicator();
                     },
                   ),
-                  SizedBox(height: 10),
-                  Text("Email ID"),
-                  SizedBox(height: 7),
-                  StreamBuilder(
-                    stream: _firestore
-                        .collection("firebase")
-                        .where("Id", isEqualTo: _auth.currentUser!.uid)
-                        .snapshots(),
-                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasData) {
-                        final List<DocumentSnapshot> documents =
-                            snapshot.data!.docs;
-                        if (documents.isNotEmpty) {
-                          final Email = documents[0].get("Email");
-                          emailcontroller.text = Email ?? "";
-                        }
-                      }
-                      return TextField(
-                        controller: emailcontroller,
-                        readOnly: true,
-                        decoration: InputDecoration(
-                          hintStyle: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      );
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => const EditMobileNum())));
                     },
-                  ),
-                  SizedBox(height: 10),
-                  Text("Place"),
-                  SizedBox(height: 7),
-                  TextField(
-                    readOnly: true,
-                    decoration: InputDecoration(
-                        hintText: 'Perinthalmanna',
-                        hintStyle: TextStyle(fontWeight: FontWeight.bold)),
-                  ),
-                  SizedBox(height: 10),
-                  Text("Age"),
-                  SizedBox(height: 7),
-                  TextField(
-                    readOnly: true,
-                    decoration: InputDecoration(
-                        hintText: '23',
-                        hintStyle: TextStyle(fontWeight: FontWeight.bold)),
+                    child: Container(
+                      width: 30,
+                      child: Image.asset(
+                        'images/OIP.jpeg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ],
+              ),
+              const Divider(
+                color: Colors.black,
+              ),
+              const SizedBox(height: 10),
+              const Text("Place",style: TextStyle(fontWeight: FontWeight.bold),),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  StreamBuilder(
+                    stream: _firestore
+                        .collection("firebase")
+                        .where("Id", isEqualTo: _auth.currentUser!.uid)
+                        .snapshots(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasData) {
+                        final List<DocumentSnapshot> documents =
+                            snapshot.data!.docs;
+                        if (documents.isNotEmpty) {
+                          final place = documents[0].get("Place");
+                          return Text(place ?? "");
+                        }
+                      }
+                      return const CircularProgressIndicator();
+                    },
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => const PlaceEditPage())));
+                    },
+                    child: Container(
+                      width: 30,
+                      child: Image.asset(
+                        'images/OIP.jpeg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(
+                color: Colors.black,
+              ),
+              const SizedBox(height: 10),
+              const Text("Age",style: TextStyle(fontWeight: FontWeight.bold),),
+              const SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  StreamBuilder(
+                    stream: _firestore
+                        .collection("firebase")
+                        .where("Id", isEqualTo: _auth.currentUser!.uid)
+                        .snapshots(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasData) {
+                        final List<DocumentSnapshot> documents =
+                            snapshot.data!.docs;
+                        if (documents.isNotEmpty) {
+                          final age = documents[0].get("Age");
+                          return Text(age.toString() ?? "");
+                        }
+                      }
+                      return const CircularProgressIndicator();
+                    },
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => const AgeEditPage())));
+                    },
+                    child: Container(
+                      width: 30,
+                      child: Image.asset(
+                        'images/OIP.jpeg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const Divider(
+                color: Colors.black,
               ),
             ],
           ),

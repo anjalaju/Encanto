@@ -37,7 +37,7 @@ class _homepageState extends State<homepage> {
               stream: _firestore.collection('firebase').snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData || snapshot.data == null) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   ); // Or any other loading indicator
                 }
@@ -63,7 +63,7 @@ class _homepageState extends State<homepage> {
                         child: Container(
                           height: 130,
                           width: 150,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.grey,
                           ),
@@ -75,7 +75,8 @@ class _homepageState extends State<homepage> {
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return CircularProgressIndicator();
+                                return const Center(
+                                    child: CircularProgressIndicator());
                               }
                               if (!snapshot.hasData || snapshot.data == null) {
                                 print('No data available');
@@ -88,12 +89,12 @@ class _homepageState extends State<homepage> {
                               }
 
                               // Check if 'image' field exists and is not null in the document
-                              if (!data.data()!.containsKey('image') ||
-                                  data.data()!['image'] == null) {
+                              if (!data.data()!.containsKey('Image') ||
+                                  data.data()!['Image'] == null) {
                                 print('Image URL not found');
                               }
 
-                              String imageUrl = data.data()!['image'];
+                              String imageUrl = data.data()!['Image'];
 
                               return CircleAvatar(
                                 backgroundColor: Colors.black,
@@ -144,7 +145,7 @@ class _homepageState extends State<homepage> {
                               );
                             } else {
                               // Handle the case where username is null
-                              return Text(
+                              return const Text(
                                 ",",
                                 style: TextStyle(
                                   fontSize: 24,
@@ -156,7 +157,9 @@ class _homepageState extends State<homepage> {
                             }
                           }
                         }
-                        return CircularProgressIndicator(); // Placeholder for loading state
+                        return const Center(
+                            child:
+                                CircularProgressIndicator()); // Placeholder for loading state
                       },
                     ),
 
@@ -336,10 +339,6 @@ class _homepageState extends State<homepage> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: const Text(
-                                        "Cancel",
-                                        style: TextStyle(color: Colors.indigo),
-                                      ),
                                       style: TextButton.styleFrom(
                                           elevation: 5,
                                           minimumSize: const Size(128, 46),
@@ -350,7 +349,11 @@ class _homepageState extends State<homepage> {
                                           textStyle: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
-                                          ))),
+                                          )),
+                                      child: const Text(
+                                        "Cancel",
+                                        style: TextStyle(color: Colors.indigo),
+                                      )),
                                   ElevatedButton(
                                       onPressed: () async {
                                         // SharedPreferences preferences =
@@ -378,11 +381,20 @@ class _homepageState extends State<homepage> {
                                             await SharedPreferences
                                                 .getInstance();
                                         _auth.signOut().then((value) =>
-                                            Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        welcome()))); // Use pushReplacement here
+                                            // Navigator.pushReplacement(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             welcome()))); // Use pushReplacement here
+
+                                            Navigator.of(context)
+                                                .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const welcome()),
+                                              (Route<dynamic> route) => false,
+                                            ));
+
                                         log('signout succes');
                                         preferences.clear();
                                         // log('logout successfully' as num);
@@ -390,10 +402,6 @@ class _homepageState extends State<homepage> {
                                         log('logout success');
                                         // Navigator.pop(context);
                                       },
-                                      child: const Text(
-                                        "Yes",
-                                        style: TextStyle(color: Colors.red),
-                                      ),
                                       style: TextButton.styleFrom(
                                           elevation: 5,
                                           minimumSize: const Size(128, 46),
@@ -404,7 +412,11 @@ class _homepageState extends State<homepage> {
                                           textStyle: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
-                                          ))),
+                                          )),
+                                      child: const Text(
+                                        "Yes",
+                                        style: TextStyle(color: Colors.red),
+                                      )),
                                 ]);
                           },
                         );
@@ -453,7 +465,7 @@ class _homepageState extends State<homepage> {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: Color(0xffD9D9D9),
+                  color: const Color(0xffD9D9D9),
                   borderRadius: BorderRadius.circular(20)),
               height: 111,
               width: 361,
@@ -499,14 +511,14 @@ class _homepageState extends State<homepage> {
             ),
             Container(
               decoration: BoxDecoration(
-                  color: Color(0xffD9D9D9),
+                  color: const Color(0xffD9D9D9),
                   borderRadius: BorderRadius.circular(20)),
               height: 111,
               width: 361,
               child: InkWell(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Charityhomepage(),
+                    builder: (context) => const Charityhomepage(),
                   ));
                 },
                 child: Row(
@@ -565,16 +577,16 @@ class _homepageState extends State<homepage> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.camera,
                   color: Colors.indigo,
                 ),
-                title: Text(
+                title: const Text(
                   'Take a photo',
                   style: TextStyle(color: Colors.indigo),
                 ),
@@ -600,8 +612,8 @@ class _homepageState extends State<homepage> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.photo_library, color: Colors.indigo),
-                title: Text(
+                leading: const Icon(Icons.photo_library, color: Colors.indigo),
+                title: const Text(
                   'Choose from gallery',
                   style: TextStyle(color: Colors.indigo),
                 ),
@@ -620,7 +632,7 @@ class _homepageState extends State<homepage> {
                       FirebaseFirestore.instance
                           .collection('firebase')
                           .doc(id)
-                          .update({'image': url});
+                          .update({'Image': url});
                     });
                   });
                   Navigator.pop(context);
