@@ -88,6 +88,7 @@ class _LogaState extends State<loginpage> {
                   const SizedBox(height: 7),
                   TextFormField(
                     controller: emailcontroller,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return 'Please enter an email address';

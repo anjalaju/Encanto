@@ -20,3 +20,4 @@ class _MyWidgetState extends State<MyWidget> {
     );
   }
 }
+  String email = " ", password = "";

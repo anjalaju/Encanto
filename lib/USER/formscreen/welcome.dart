@@ -17,7 +17,7 @@ class _LogaState extends State<welcome> {
     //   // Close the app when back button is pressed
     //   return Future.value(false);
     // },
-     return WillPopScope(
+    return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
           backgroundColor: const Color.fromRGBO(129, 146, 204, 1),
@@ -34,7 +34,7 @@ class _LogaState extends State<welcome> {
                       height: 370,
                       width: 370,
                       // color: Colors.red,
-      
+
                       child: const Image(
                         image: AssetImage(
                           "images/logo.png",
@@ -78,7 +78,8 @@ class _LogaState extends State<welcome> {
           )),
     );
   }
-   Future<bool> _onWillPop() async {
+
+      Future<bool> _onWillPop() async {
     return (await showDialog(
           context: context,
           builder: (context) => AlertDialog(

@@ -74,6 +74,7 @@ class _EditMobileNumState extends State<EditMobileNum> {
                 ),
                 TextFormField(
                   controller: _mobileNumController,
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'New Mobile Number',

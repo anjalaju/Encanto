@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:main_project/USER/formscreen/otppage/signupotp.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:main_project/USER/formscreen/otppage/otp.dart';
+import 'package:main_project/USER/formscreen/otppage/successfull.dart';
+import 'package:main_project/deno.dart';
 
 class signup extends StatefulWidget {
   const signup({super.key});
@@ -16,19 +16,90 @@ class _LogaState extends State<signup> {
   bool _obscureText1 = true;
   bool _obscureText2 = true;
   final _formkey = GlobalKey<FormState>();
-  Future addfirebase(Map<String, dynamic> logininfomap, String userid) async {
-    return FirebaseFirestore.instance
-        .collection('firebase')
-        .doc(userid)
-        .set(logininfomap);
+  // Future addfirebase(Map<String, dynamic> logininfomap, String userid) async {
+  //   return FirebaseFirestore.instance
+  //       .collection('firebase')
+  //       .doc(userid)
+  //       .set(logininfomap);
+  // }
+
+  Future<void> signInWithPhoneCredential(
+      BuildContext context, PhoneAuthCredential credential) async {
+    try {
+      final authResult =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      // Check if the user is signed in
+      if (authResult.user != null) {
+//User signed in successfully, navigate to the next screen
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => successfull(),
+          ),
+        );
+      } else {
+        // Handle sign in failure
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Sign in failed'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: $e'),
+        ),
+      );
+    }
+  }
+
+  final selectedcountrycode = '+91';
+  Future<void> initiatePhoneVerification(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '$selectedcountrycode${mobilecontroller.text}',
+        verificationCompleted: (PhoneAuthCredential credential) {
+          signInWithPhoneCredential(context, credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Verification failed: ${e.message}'),
+            ),
+          );
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          // Navigate to OTP screen after code is sent
+          
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => signupotp(
+                  username: usernamecontroller.text,
+                  email: emailcontroller.text,
+                    verificationid: verificationId,
+                    mobilenumber:
+                        '$selectedcountrycode${mobilecontroller.text}')),
+          );
+        },
+        timeout: Duration(seconds: 60),
+        codeAutoRetrievalTimeout: (String verificationId) {
+          // Handle timeout
+        },
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error: $e'),
+        ),
+      );
+    }
   }
 
   String? _password;
   String? _confirmPassword;
-  String email = " ", password = "";
-  final _auth=FirebaseAuth.instance; 
-
-   bool isloading=false;
+  final _auth = FirebaseAuth.instance;
 
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
@@ -36,66 +107,68 @@ class _LogaState extends State<signup> {
   TextEditingController mobilecontroller = TextEditingController();
   TextEditingController confirmcontroller = TextEditingController();
 
-  Signup() async {
-    SharedPreferences preferences= await SharedPreferences.getInstance();
-    if (password != null) {
-      try {
-        setState(() {
-          isloading=true;
-        });
-        UserCredential credential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: password);
-            preferences.setString('isloggin', credential.user!.uid);
-        // Ensure that 'context' is available where this code is executed
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                signupotp(), // Make sure 'SignupOTP' is correctly named
-          ),
-        );
-        // String randomString(int length) {
-        //   const charset = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        //   Random random = Random();
-        //   return List.generate(
-        //       length, (_) => charset[random.nextInt(charset.length)]).join();
-        // }
+  // Signup() async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
+  //   if (password != null) {
+  //     try {
+  //       setState(() {
+  //         isloading = true;
+  //       });
+  //       UserCredential credential = await FirebaseAuth.instance
+  //           .createUserWithEmailAndPassword(email: email, password: password);
+  //       preferences.setString('isloggin', credential.user!.uid);
+  //       // Ensure that 'context' is available where this code is executed
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => signupotp(
+  //             mobilenumber: '',
+  //             verificationid: '',
+  //           ), // Make sure 'SignupOTP' is correctly named
+  //         ),
+  //       );
+  //       // String randomString(int length) {
+  //       //   const charset = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  //       //   Random random = Random();
+  //       //   return List.generate(
+  //       //       length, (_) => charset[random.nextInt(charset.length)]).join();
+  //       // }
 
-       // String registered_user_id = randomString(10);
-       String uid=_auth.currentUser!.uid;
-        Map<String, dynamic> registereinfomap = {
-          "User_Name": usernamecontroller.text,
-          "Email": emailcontroller.text,
-          "Age": '',
-          "Place": '',
-          "Id": uid,
-          "Mobile_No": mobilecontroller.text,
-          "Image":'',
-        };
-        await addfirebase(registereinfomap, uid);
-        const SnackBar(content: Text("Details added to firebase Succesfully"));
-        setState(() {
-          isloading=false;
-        });
-      } on FirebaseAuthException catch (e) {
-        setState(() {
-          isloading=false;
-        });
-        if (e.code == 'weak-password') {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('weak password'),
-          ));
-        } else if (e.code == 'email-already-in-use') {
-          setState(() {
-          isloading=false;
-        });
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('email already  use'),
-          ));
-        }
-      }
-    }
-  }
+  //       // String registered_user_id = randomString(10);
+  //       String uid = _auth.currentUser!.uid;
+  //       Map<String, dynamic> registereinfomap = {
+  //         "User_Name": usernamecontroller.text,
+  //         "Email": emailcontroller.text,
+  //         "Age": '',
+  //         "Place": '',
+  //         "Id": uid,
+  //         "Mobile_No": mobilecontroller.text,
+  //         "Image": '',
+  //       };
+  //       await addfirebase(registereinfomap, uid);
+  //       const SnackBar(content: Text("Details added to firebase Succesfully"));
+  //       setState(() {
+  //         isloading = false;
+  //       });
+  //     } on FirebaseAuthException catch (e) {
+  //       setState(() {
+  //         isloading = false;
+  //       });
+  //       if (e.code == 'weak-password') {
+  //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //           content: Text('weak password'),
+  //         ));
+  //       } else if (e.code == 'email-already-in-use') {
+  //         setState(() {
+  //           isloading = false;
+  //         });
+  //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //           content: Text('email already  use'),
+  //         ));
+  //       }
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -316,8 +389,8 @@ class _LogaState extends State<signup> {
                     height: 30,
                   ),
                   Center(
-                    child:isloading 
-                    ? Center(child: CircularProgressIndicator(),): ElevatedButton(
+                    child:
+                     ElevatedButton(
                         style: ButtonStyle(
                             shape: MaterialStateProperty.all(
                                 RoundedRectangleBorder(
@@ -329,13 +402,14 @@ class _LogaState extends State<signup> {
                                 MaterialStateProperty.all(Colors.white),
                             backgroundColor: MaterialStateProperty.all(
                                 const Color.fromARGB(255, 230, 27, 75))),
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formkey.currentState!.validate()) {
                             setState(() {
                               email = emailcontroller.text;
                               password = passwordcontroller.text;
                             });
-                            Signup();
+                            await initiatePhoneVerification(context);
+
                             // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             //   margin: const EdgeInsets.symmetric(
                             //       horizontal: 90, vertical: 60),

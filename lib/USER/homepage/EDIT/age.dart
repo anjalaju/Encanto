@@ -18,7 +18,7 @@ Future<void> updateAge(String userId, int newAge) async {
 // Widget for editing age page
 class AgeEditPage extends StatefulWidget {
   const AgeEditPage({Key? key}) : super(key: key);
-
+             
   @override
   _AgeEditPageState createState() => _AgeEditPageState();
 }
