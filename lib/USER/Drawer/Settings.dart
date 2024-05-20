@@ -125,11 +125,74 @@ class _SettingpageState extends State<Settingpage> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const welcome(),
-                  ));
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                      actionsAlignment: MainAxisAlignment.spaceEvenly,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      title: const Center(
+                          child: Column(
+                        children: [
+                          Text(
+                            "Are you sure?",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "Do you want to delete the account?",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      )),
+                      actions: <Widget>[
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text(
+                              "Cancel",
+                              style: TextStyle(color: Colors.indigo),
+                            ),
+                            style: TextButton.styleFrom(
+                                elevation: 5,
+                                minimumSize: const Size(128, 46),
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6)),
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ))),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushReplacement(MaterialPageRoute(
+                                builder: (context) => welcome(),
+                              ));
+                            },
+                            child: const Text(
+                              "Yes",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            style: TextButton.styleFrom(
+                                elevation: 5,
+                                minimumSize: const Size(128, 46),
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6)),
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ))),
+                      ]);
+                },
+              );
             },
           ),
           const Divider(
