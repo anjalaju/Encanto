@@ -118,7 +118,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    Timer(Duration(seconds: 1), () => check());
+    Timer(const Duration(seconds: 1), () => check());
     super.initState();
   }
 
@@ -139,7 +139,7 @@ class _SplashState extends State<Splash> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => Swipee(),
+            builder: (context) => const Swipee(),
           ));
     }
   }
@@ -149,7 +149,7 @@ class _SplashState extends State<Splash> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Color(0xffE72245),
+      color: const Color(0xffE72245),
       child: Center(
         child: Image.asset("images/logo.png"),
       ),

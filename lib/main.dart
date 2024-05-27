@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:main_project/Bussines_logic/firebase_options.dart';
-import 'package:main_project/ENTREPRENEUR/homepage/bottomnav.dart';
 import 'package:main_project/Intropage.dart/Swipe.dart';
 
 Future<void> main() async {
