@@ -88,6 +88,7 @@ class _LogaState extends State<loginpage> {
                   const SizedBox(height: 7),
                   TextFormField(
                     controller: emailcontroller,
+                    // autovalidateMode: AutovalidateMode.onUserInteraction,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -115,6 +116,7 @@ class _LogaState extends State<loginpage> {
                   const SizedBox(height: 7),
                   TextFormField(
                       controller: passwordcontroller,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       validator: (password) {
                         // Password length should be at least 8 characters
                         if (password!.length < 4) {
