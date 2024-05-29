@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
+import 'package:like_button/like_button.dart';
 import 'package:main_project/USER/booking/booking.dart';
 import 'package:main_project/USER/chat.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,34 +15,33 @@ class _TravellerbusState extends State<Travellerbus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: AppBar(
-        title: const Text(
-          'Traveller bus',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
-        ),
-        backgroundColor: Colors.transparent,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            thickness: 2,
+      appBar: AppBar(
+          title: const Text(
+            'Traveller bus',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
+          ),
+          backgroundColor: Colors.transparent,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              thickness: 2,
+              color: Colors.black,
+              height: 1,
+            ),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+            ),
             color: Colors.black,
-            height: 1,
           ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-          ),
-          color: Colors.black,
-        ),
-         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
-        ]
-      ),
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.favorite)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.chat_outlined))
+          ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -86,16 +85,20 @@ class _TravellerbusState extends State<Travellerbus> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text("Weone service"),
-                        IconButton(
-                            onPressed: () {
-                                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                         LikeButton(
+            likeBuilder: (bool isLiked) {
+              return Icon(
+                isLiked ? Icons.favorite : Icons.favorite_border,
+                color: isLiked ? Colors.red : Colors.grey,
+                size: 30,
+              );
+            },
+            onTap: (bool isLiked) {
+              return Future.value(!isLiked);
+            },
+          ),
                       ],
                     ),
-          
-     
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -117,9 +120,9 @@ class _TravellerbusState extends State<Travellerbus> {
                                         borderRadius:
                                             BorderRadius.circular(20)))),
                             onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Bookimgpage(),
-                  ));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Bookimgpage(),
+                              ));
                             },
                             child: const Row(
                               children: [
@@ -134,16 +137,17 @@ class _TravellerbusState extends State<Travellerbus> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.currency_rupee,size: 20,),
+                        Icon(
+                          Icons.currency_rupee,
+                          size: 20,
+                        ),
                         Text(
                           "15000-20000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                   
                       ],
                     ),
-             
                   ],
                 ),
               ),
@@ -170,9 +174,11 @@ class _TravellerbusState extends State<Travellerbus> {
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)))),
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Chatpage(name: 'Traveller bus',),
-                  ));
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              name: 'Traveller bus',
+                            ),
+                          ));
                         },
                         child: const Row(
                           children: [
@@ -201,7 +207,7 @@ class _TravellerbusState extends State<Travellerbus> {
                         ),
                       ),
                       onPressed: () {
-                         _makePhoneCall('7025053483');
+                        _makePhoneCall('7025053483');
                       },
                       child: const Row(
                         children: [
@@ -218,6 +224,7 @@ class _TravellerbusState extends State<Travellerbus> {
       ),
     );
   }
+
   void _makePhoneCall(String phoneNumber) async {
     final url = 'tel:$phoneNumber';
     if (await canLaunch(url)) {

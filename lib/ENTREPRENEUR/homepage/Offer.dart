@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:main_project/ENTREPRENEUR/homepage/offerpageb.dart';
 
 class Entreofferpage extends StatefulWidget {
   const Entreofferpage({super.key});
@@ -35,73 +37,77 @@ class _EntreofferpageState extends State<Entreofferpage> {
           color: Colors.black,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
+      body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 50,
-              ),
-              Container(
-                height: 300,
-                width: 500,
-                // color: Colors.amber,
-                child: Image(
-                  image: AssetImage(
-                    "images/offer.jpg",
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(
-                height: 60,
-              ),
-              Container(
-                height: 200,
-                width: 500,
-                // color: Colors.amber,
-                child: Image(
-                  image: AssetImage(
-                    "images/offerr.jpeg",
-                  ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(
+              StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('Offer')
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          final data = snapshot.data!.docs[index];
+                          return Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: SizedBox(
+                                // color: Colors.amber,
+                                height: 300,
+                                width: 300,
+                                child: Image.network(
+                                  '${data['Image']}',
+                                  fit: BoxFit.cover,
+                                )),
+                          );
+                        },
+                        itemCount: snapshot.data!.docs.length,
+                      ),
+                    );
+                  }),
+              const SizedBox(
                 height: 20,
               ),
-              OutlinedButton(
-                  style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all(const Color(0xff496FF7)),
-                      textStyle: MaterialStateProperty.all(const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 14)),
-                      minimumSize:
-                          MaterialStateProperty.all(const Size(200, 50)),
-                      side: MaterialStateProperty.all(
-                          const BorderSide(color: Color(0xff496FF7))),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)))),
-                  onPressed: () {
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //   builder: (context) => Bookimgpage(),
-                    // ));
-                  },
-                  child: const Row(
-                    children: [
-                      Text("Add your offer"),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(Icons.add),
-                    ],
-                  ))
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: OutlinedButton(
+                    style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all(const Color(0xff496FF7)),
+                        textStyle: MaterialStateProperty.all(const TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 14)),
+                        // minimumSize:
+                        //     MaterialStateProperty.all(const Size(100, 30)),
+                            maximumSize:
+                            MaterialStateProperty.all(const Size(200, 80)),
+                        side: MaterialStateProperty.all(
+                            const BorderSide(color: Color(0xff496FF7))),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)))),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Enofferpagee(),
+                      ));
+                    },
+                    child: const Row(
+                      children: [
+                        Text("Add your offer"),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(Icons.add),
+                      ],
+                    )),
+              )
             ],
-          ),
-        ),
-      ),
+          )),
     );
   }
 }

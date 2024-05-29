@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
+import 'package:like_button/like_button.dart';
 import 'package:main_project/USER/booking/booking.dart';
 import 'package:main_project/USER/chat.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -83,13 +83,18 @@ class _KalyanamandappamState extends State<Kalyanamandappam> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text("SUMANGALI Auditorium"),
-                        IconButton(
-                            onPressed: () {
-
-                                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => Shortlist(),
-                  ));
-                            }, icon: const Icon(Icons.favorite))
+                       LikeButton(
+            likeBuilder: (bool isLiked) {
+              return Icon(
+                isLiked ? Icons.favorite : Icons.favorite_border,
+                color: isLiked ? Colors.red : Colors.grey,
+                size: 30,
+              );
+            },
+            onTap: (bool isLiked) {
+              return Future.value(!isLiked);
+            },
+          ),
                       ],
                     ),
                     const Text("non veg"),

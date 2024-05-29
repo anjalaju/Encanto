@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:main_project/USER/Drawer/shotlist.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:like_button/like_button.dart';
 import 'package:main_project/USER/booking/booking.dart';
 import 'package:main_project/USER/chat.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -71,6 +72,22 @@ class _BankquethallState extends State<Bankquethall> {
                   fit: BoxFit.cover,
                 ),
               ),
+              SizedBox(height: 10,),
+              RatingBar.builder(itemSize: 25,
+                                 initialRating: 0,
+                                 minRating: 1,
+                                 direction: Axis.horizontal,
+                                 allowHalfRating: true,
+                                 itemCount: 5,
+                                 itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                 itemBuilder: (context, _) => Icon(
+                                   Icons.star,
+                                   color: Colors.amber,
+                                 ),
+                                 onRatingUpdate: (rating) {
+                                   print(rating);
+                                 },
+                               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -82,13 +99,26 @@ class _BankquethallState extends State<Bankquethall> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text("SUMANGALI Auditorium"),
-                        IconButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Shortlist(),
-                              ));
-                            },
-                            icon: const Icon(Icons.favorite))
+                        // IconButton(
+                        //     onPressed: () {
+                        //       Navigator.of(context).push(MaterialPageRoute(
+                        //         builder: (context) => Shortlist(),
+                        //       ));
+                        //     },
+                        //     icon: const Icon(Icons.favorite_border)
+                        //     )
+                        LikeButton(
+            likeBuilder: (bool isLiked) {
+              return Icon(
+                isLiked ? Icons.favorite : Icons.favorite_border,
+                color: isLiked ? Colors.red : Colors.grey,
+                size: 30,
+              );
+            },
+            onTap: (bool isLiked) {
+              return Future.value(!isLiked);
+            },
+          ),
                       ],
                     ),
                     const Text("non veg"),
